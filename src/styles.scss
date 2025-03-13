@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+	--background: #1b1b1b;
+	--background-2: #37393b;
+	--hover: #40444b;
+	--text: #e2e2e3;
+	--text-active: #63a4cb;
+	--main: #004a77;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+	height: 100%;
+	background-color: var(--background);
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

@@ -23,13 +23,13 @@ import { MatRadioModule } from '@angular/material/radio';
 	styleUrl: './side-nav.component.scss',
 })
 export class SideNavComponent {
-	toggleSidenav = input<boolean>(true);
-	sidenavIsOpen = this.toggleSidenav();
+	sidenavStatus = input<boolean>(true);
+	sidenavIsOpen = this.sidenavStatus();
 	showFiller: boolean = false;
 
 	constructor() {
 		effect(() => {
-			this.sidenavIsOpen = this.toggleSidenav();
+			this.sidenavIsOpen = this.sidenavStatus();
 		});
 	}
 }

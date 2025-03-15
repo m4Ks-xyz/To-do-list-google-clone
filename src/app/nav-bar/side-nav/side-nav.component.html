@@ -25,10 +25,13 @@
 		mat-raised-button
 	>
 		<p>Listy</p>
-		<mat-icon>arrow_drop_down</mat-icon>
+		@if (showFiller) {
+			<mat-icon>keyboard_arrow_up</mat-icon>
+		} @else {
+			<mat-icon>keyboard_arrow_down</mat-icon>
+		}
 	</button>
 	@if (showFiller) {
-		<!-- [(ngModel)]="checked -->
 		<mat-checkbox class="example-margin side-nav__button__checkbox"
 			>Moje zadania</mat-checkbox
 		>

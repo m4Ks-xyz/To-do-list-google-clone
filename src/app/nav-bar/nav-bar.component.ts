@@ -1,4 +1,9 @@
-import { Component, input, WritableSignal } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	input,
+	WritableSignal,
+} from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 	imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 	templateUrl: './nav-bar.component.html',
 	styleUrl: './nav-bar.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavBarComponent {
 	sideNavState = input<WritableSignal<boolean>>();
@@ -17,11 +23,4 @@ export class NavBarComponent {
 		this.sideNavState()?.update((prev) => !prev);
 	}
 
-	// @Output() togglingSideNav = new EventEmitter<boolean>();
-	// isTogglingSideNav = true;
-
-	// toggleSideNav(): void {
-	// 	this.isTogglingSideNav = !this.isTogglingSideNav;
-	// 	return this.togglingSideNav.emit(this.isTogglingSideNav);
-	// }
 }

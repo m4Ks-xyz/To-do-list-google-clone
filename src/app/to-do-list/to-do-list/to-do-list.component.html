@@ -1,0 +1,82 @@
+@for (list of toDoLists(); track list.listId) {
+	<div class="my-list">
+		<div class="my-list__header">
+			<h2 class="my-list__title">{{ list.listTitle }}</h2>
+			<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu for ">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item>
+					<mat-icon>delete</mat-icon>
+					<span>Usuń liste</span>
+				</button>
+				<button mat-menu-item>
+					<mat-icon>edit_square</mat-icon>
+					<span>Zmień nazwe listy</span>
+				</button>
+			</mat-menu>
+		</div>
+
+		<div class="task-list">
+			<div class="task-list__items">
+				@for (task of list.tasks; track task.taskId) {
+					<div class="task-list__item">
+						<div class="task-list__group">
+							<p class="task-list__item__date">
+								<mat-icon
+									aria-hidden="false"
+									aria-label="calendar icon"
+									fontIcon="event"
+								></mat-icon>
+								{{ task.taskDate }}
+							</p>
+							<p class="task-list__item__title">{{ task.taskTitle }}</p>
+							<p class="task-list__item__description">
+								{{ task.taskDescription }}
+							</p>
+						</div>
+
+						<div class="task-list__group task-list__group--icons">
+							<button
+								class="task-list__group__button"
+								mat-fab
+								aria-label="Favorite icon"
+							>
+								<mat-icon class="task-list__group__button__icon"
+									>check</mat-icon
+								>
+							</button>
+							<button
+								class="task-list__group__button"
+								mat-fab
+								aria-label="Delete icon"
+							>
+								<mat-icon class="task-list__group__button__icon"
+									>delete</mat-icon
+								>
+							</button>
+							<button
+								class="task-list__group__button"
+								mat-fab
+								aria-label="Favorite icon"
+							>
+								<mat-icon class="task-list__group__button__icon"
+									>edit_square</mat-icon
+								>
+							</button>
+							<button
+								class="task-list__group__button"
+								mat-fab
+								aria-label="Favorite icon"
+							>
+								<mat-icon class="task-list__group__button__icon"
+									>star_border</mat-icon
+								>
+							</button>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+}

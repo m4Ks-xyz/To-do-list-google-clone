@@ -1,4 +1,9 @@
-import { Component, effect, input } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	effect,
+	input,
+} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -21,15 +26,16 @@ import { MatRadioModule } from '@angular/material/radio';
 	],
 	templateUrl: './side-nav.component.html',
 	styleUrl: './side-nav.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavComponent {
-	sidenavStatus = input<boolean>(true);
-	sidenavIsOpen = this.sidenavStatus();
-	showFiller: boolean = false;
-
 	constructor() {
 		effect(() => {
 			this.sidenavIsOpen = this.sidenavStatus();
 		});
 	}
+
+	sidenavStatus = input<boolean>(true);
+	sidenavIsOpen: boolean = this.sidenavStatus();
+	showFiller: boolean = true;
 }

@@ -1,2 +1,10 @@
 <app-nav-bar [sideNavState]="sideNavState" />
-<app-side-nav [sidenavStatus]="sideNavState()" />
+<div class="content">
+	<app-side-nav [sidenavStatus]="sideNavState()" />
+	<div class="content__lists">
+		<app-to-do-list [toDoLists]="allLists" />
+	</div>
+</div>
+@if (addListState()) {
+	<app-new-list />
+}

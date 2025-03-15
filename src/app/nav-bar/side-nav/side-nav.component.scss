@@ -1,16 +1,11 @@
-:host {
-	display: block;
-	width: 11rem;
-}
-
 .side-nav {
-	display: flex;
-	width: 15rem;
+	min-width: 14rem;
+	max-width: 15rem;
 	padding: 0.75rem 0.5rem 0;
+	background-color: var(--background);
 	font-size: 2rem;
 
 	.mat-mdc-unelevated-button:not(:disabled) {
-		//inaczej nie dało sie stylować
 		justify-content: start;
 		background-color: var(--background);
 		color: var(--text);

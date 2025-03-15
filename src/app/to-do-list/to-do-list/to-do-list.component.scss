@@ -1,0 +1,98 @@
+:host {
+	display: flex;
+	gap: 1rem;
+}
+
+.my-list {
+	min-width: 16rem;
+	max-height: 87vh;
+	margin-bottom: 0.5rem;
+	padding: 1rem;
+	border-radius: 0.7rem;
+	background-color: var(--background-list);
+	color: var(--text);
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-left: 0.5rem;
+		gap: 1rem;
+		line-height: 1.5rem;
+	}
+
+	.task-list {
+		overflow: auto;
+		&__items {
+			max-height: 80vh;
+			padding-right: 0.5rem;
+			gap: 1rem;
+		}
+
+		&__item {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 1rem 2rem;
+			gap: 5rem;
+			border-radius: 0.25rem;
+
+			&:hover {
+				background-color: var(--background);
+			}
+
+			&__title {
+				min-width: 10rem;
+				max-width: 15rem;
+				margin: 0 0 0.125rem 0;
+				color: #5aad9f;
+				font-size: 1.5rem;
+			}
+
+			&__description {
+				max-width: 20rem;
+				margin: 0;
+				font-size: 1rem;
+			}
+
+			&__date {
+				display: flex;
+				margin: 0;
+				font-size: 0.75rem;
+				line-height: 1.2rem;
+
+				mat-icon {
+					font-size: 1rem;
+					text-align: start;
+				}
+			}
+		}
+
+		&__group {
+			line-height: 1.5rem;
+
+			&__button {
+				width: 2.2rem;
+				height: 2.2rem;
+				background-color: var(--background-2);
+				color: var(--text);
+
+				&:hover {
+					background-color: #121214;
+				}
+
+				&__icon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 1.2rem;
+				}
+			}
+
+			&--icons {
+				display: flex;
+				gap: 1rem;
+			}
+		}
+	}
+}

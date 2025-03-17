@@ -23,6 +23,7 @@
 
 	.task-list {
 		overflow: auto;
+
 		&__items {
 			max-height: 80vh;
 			padding-right: 0.5rem;
@@ -31,11 +32,18 @@
 
 		&__item {
 			display: flex;
+
+			position: relative;
 			align-items: center;
 			justify-content: space-between;
 			padding: 1rem 2rem;
 			gap: 5rem;
 			border-radius: 0.25rem;
+			transition: background 0.3s ease;
+
+			&:hover .task-list__group--icons {
+				opacity: 1;
+			}
 
 			&:hover {
 				background-color: var(--background);
@@ -92,6 +100,8 @@
 			&--icons {
 				display: flex;
 				gap: 1rem;
+				opacity: 0;
+				transition: opacity 0.3s ease;
 			}
 		}
 	}

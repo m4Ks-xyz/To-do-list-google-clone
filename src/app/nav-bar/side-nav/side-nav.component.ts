@@ -1,8 +1,9 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
-	effect,
+	inject,
 	input,
+	output,
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +13,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NewListComponent } from '../../new/new-list/new-list.component';
+import { generateRandomId } from '../../utils/generate-random-id.util';
 
 @Component({
 	selector: 'app-side-nav',
@@ -23,19 +27,26 @@ import { MatRadioModule } from '@angular/material/radio';
 		MatCardModule,
 		MatCheckboxModule,
 		MatRadioModule,
+		MatDialogModule,
 	],
 	templateUrl: './side-nav.component.html',
 	styleUrl: './side-nav.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavComponent {
-	constructor() {
-		effect(() => {
-			this.sidenavIsOpen = this.sidenavStatus();
+	readonly dialog = inject(MatDialog);
+	readonly sidenavIsOpen = input<boolean>(true);
+	readonly newListContent = output<{ id: string; title: string }>();
+	showFiller: boolean = true;
+
+	openDialog() {
+		const openDialog = this.dialog.open(NewListComponent);
+
+		openDialog.afterClosed().subscribe((data) => {
+			if (data) {
+				const randomId = generateRandomId();
+				this.newListContent.emit({ id: randomId, ...data });
+			}
 		});
 	}
-
-	sidenavStatus = input<boolean>(true);
-	sidenavIsOpen: boolean = this.sidenavStatus();
-	showFiller: boolean = true;
 }

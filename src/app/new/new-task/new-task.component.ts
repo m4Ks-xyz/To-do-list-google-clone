@@ -10,11 +10,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
-	selector: 'app-new-list',
+	selector: 'app-new-task',
 	providers: [provideNativeDateAdapter()],
 	imports: [
 		FormsModule,
@@ -25,22 +25,15 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 		MatDialogModule,
 		ReactiveFormsModule,
 	],
-	templateUrl: './new-list.component.html',
-	styleUrl: './new-list.component.scss',
+	templateUrl: './new-task.component.html',
+	styleUrl: './new-task.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewListComponent {
+export class NewTaskComponent {
 	readonly #fb = inject(FormBuilder);
-	readonly dialogRef = inject(MatDialogRef);
 
 	form = this.#fb.group({
 		title: ['', Validators.required],
+		description: ['', Validators.required],
 	});
-
-	onSubmit() {
-		this.form.markAllAsTouched();
-		if (this.form.valid) {
-			this.dialogRef.close(this.form.value);
-		}
-	}
 }

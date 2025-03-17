@@ -1,10 +1,10 @@
-<app-nav-bar [sideNavState]="sideNavState" />
+<app-nav-bar (sideNavToggle)="toggleSideNav()" />
 <div class="content">
-	<app-side-nav [sidenavStatus]="sideNavState()" />
+	<app-side-nav
+		[sidenavIsOpen]="openedSideNav()"
+		(newListContent)="addNewList($event)"
+	/>
 	<div class="content__lists">
-		<app-to-do-list [toDoLists]="allLists" />
+		<app-to-do-list [toDoLists]="allLists()" (removeList)="removeList($event)" />
 	</div>
 </div>
-@if (addListState()) {
-	<app-new-list />
-}

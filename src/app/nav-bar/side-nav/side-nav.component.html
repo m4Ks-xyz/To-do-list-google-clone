@@ -1,45 +1,52 @@
-<mat-drawer
-	#drawer
-	class="side-nav"
-	mode="over"
-	[(opened)]="sidenavIsOpen"
-	[style.display]="sidenavIsOpen ? 'block' : 'none'"
->
-	<button class="side-nav__button side-nav__button--add" mat-fab extended>
-		<mat-icon>add</mat-icon>
-		Utwórz
-	</button>
-	<div class="side-nav__button__group">
-		<button class="side-nav__button side-nav__button--select" mat-flat-button>
-			<mat-icon>task_alt</mat-icon>Wszystkie zadania
-		</button>
-
-		<button class="side-nav__button side-nav__button--select" mat-flat-button>
-			<mat-icon>star_border</mat-icon>Oznaczone gwiazdką
-		</button>
-	</div>
-
-	<button
-		class="side-nav__button side-nav__button--toggle"
-		(click)="showFiller = !showFiller"
-		mat-raised-button
+<nav>
+	<mat-drawer
+		#drawer
+		class="side-nav"
+		mode="over"
+		[opened]="sidenavIsOpen()"
+		[style.display]="sidenavIsOpen() ? 'block' : 'none'"
 	>
-		<p>Listy</p>
-		@if (showFiller) {
-			<mat-icon>keyboard_arrow_up</mat-icon>
-		} @else {
-			<mat-icon>keyboard_arrow_down</mat-icon>
-		}
-	</button>
-	@if (showFiller) {
-		<mat-checkbox class="example-margin side-nav__button__checkbox"
-			>Moje zadania</mat-checkbox
-		>
-	}
-
-	<div class="side-nav__button__group">
-		<button class="side-nav__button side-nav__button--select" mat-flat-button>
-			<mat-icon>add</mat-icon>Utwórz nową listę
+		<button class="side-nav__button side-nav__button--add" mat-fab extended>
+			<mat-icon>add</mat-icon>
+			Utwórz
 		</button>
-	</div>
-</mat-drawer>
+
+		<div class="side-nav__button__group">
+			<button class="side-nav__button side-nav__button--select" mat-flat-button>
+				<mat-icon>task_alt</mat-icon>Wszystkie zadania
+			</button>
+
+			<button class="side-nav__button side-nav__button--select" mat-flat-button>
+				<mat-icon>star_border</mat-icon>Oznaczone gwiazdką
+			</button>
+		</div>
+
+		<button
+			class="side-nav__button side-nav__button--toggle"
+			(click)="showFiller = !showFiller"
+			mat-raised-button
+		>
+			<p>Listy</p>
+			@if (showFiller) {
+				<mat-icon>keyboard_arrow_up</mat-icon>
+			} @else {
+				<mat-icon>keyboard_arrow_down</mat-icon>
+			}
+		</button>
+		@if (showFiller) {
+			<mat-checkbox class="example-margin side-nav__button__checkbox"
+				>Moje zadania</mat-checkbox
+			>
+		}
+
+		<div class="side-nav__button__group">
+			<button
+				(click)="openDialog()"
+				class="side-nav__button side-nav__button--select"
+				mat-flat-button
+			>
+				<mat-icon>add</mat-icon>Utwórz nową listę
+			</button>
+		</div>
+	</mat-drawer>
+</nav>

@@ -1,12 +1,12 @@
-@for (list of toDoLists(); track list.listId) {
+@for (list of toDoLists(); track list.id) {
 	<div class="my-list">
 		<div class="my-list__header">
-			<h2 class="my-list__title">{{ list.listTitle }}</h2>
-			<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu for ">
+			<h2 class="my-list__title">{{ list.title }}</h2>
+			<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu ">
 				<mat-icon>more_vert</mat-icon>
 			</button>
 			<mat-menu #menu="matMenu">
-				<button mat-menu-item>
+				<button (click)="onRemoveList(list.id)" mat-menu-item>
 					<mat-icon>delete</mat-icon>
 					<span>Usuń liste</span>
 				</button>
@@ -19,20 +19,20 @@
 
 		<div class="task-list">
 			<div class="task-list__items">
-				@for (task of list.tasks; track task.taskId) {
+				@for (task of list.tasks; track task.id) {
 					<div class="task-list__item">
 						<div class="task-list__group">
 							<p class="task-list__item__date">
 								<mat-icon
 									aria-hidden="false"
-									aria-label="calendar icon"
+									aria-label="Calendar icon"
 									fontIcon="event"
 								></mat-icon>
-								{{ task.taskDate }}
+								{{ task.date }}
 							</p>
-							<p class="task-list__item__title">{{ task.taskTitle }}</p>
+							<h3 class="task-list__item__title">{{ task.title }}</h3>
 							<p class="task-list__item__description">
-								{{ task.taskDescription }}
+								{{ task.description }}
 							</p>
 						</div>
 
@@ -46,33 +46,28 @@
 									>check</mat-icon
 								>
 							</button>
+
 							<button
-								class="task-list__group__button"
-								mat-fab
-								aria-label="Delete icon"
+								mat-icon-button
+								[matMenuTriggerFor]="menu"
+								aria-label="Menu "
 							>
-								<mat-icon class="task-list__group__button__icon"
-									>delete</mat-icon
-								>
+								<mat-icon>more_vert</mat-icon>
 							</button>
-							<button
-								class="task-list__group__button"
-								mat-fab
-								aria-label="Favorite icon"
-							>
-								<mat-icon class="task-list__group__button__icon"
-									>edit_square</mat-icon
-								>
-							</button>
-							<button
-								class="task-list__group__button"
-								mat-fab
-								aria-label="Favorite icon"
-							>
-								<mat-icon class="task-list__group__button__icon"
-									>star_border</mat-icon
-								>
-							</button>
+							<mat-menu #menu="matMenu">
+								<button mat-menu-item>
+									<mat-icon>star_border</mat-icon>
+									<span>Ulubione</span>
+								</button>
+								<button mat-menu-item>
+									<mat-icon>edit_square</mat-icon>
+									<span>Edytuj</span>
+								</button>
+								<button mat-menu-item>
+									<mat-icon>delete</mat-icon>
+									<span>Usuń</span>
+								</button>
+							</mat-menu>
 						</div>
 					</div>
 				}

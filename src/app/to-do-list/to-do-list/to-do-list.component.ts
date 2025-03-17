@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	input,
+	output,
+} from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -22,4 +27,9 @@ import { ToDoList } from './models/to-do-list.model';
 })
 export class ToDoListComponent {
 	readonly toDoLists = input.required<ToDoList[]>();
+	removeList = output<string>();
+
+	onRemoveList(id: string): void {
+		this.removeList.emit(id);
+	}
 }

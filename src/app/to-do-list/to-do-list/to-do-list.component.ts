@@ -36,6 +36,7 @@ export class ToDoListComponent {
 	readonly #dialog = inject(MatDialog);
 	readonly toDoLists = input.required<ToDoList[]>();
 	readonly removeList = output<string>();
+	readonly removeTask = output<{ listId: string; taskId: string }>();
 	readonly newTask = output<{
 		listId: string;
 		task: Task;
@@ -43,6 +44,10 @@ export class ToDoListComponent {
 
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
+	}
+
+	onRemoveTask(listId: string, taskId: string): void {
+		this.removeTask.emit({ listId, taskId });
 	}
 
 	openDialog(listId: string): void {

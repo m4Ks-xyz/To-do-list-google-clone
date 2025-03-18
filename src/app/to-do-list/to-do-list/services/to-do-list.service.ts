@@ -48,4 +48,16 @@ export class ToDoListService {
 			return updatedLists;
 		});
 	}
+
+	removeTask(listId: string, taskId: string): void {
+		this.#toDoLists.update((lists) => {
+			const updatedLists = lists.map((list) =>
+				list.id === listId
+					? { ...list, tasks: list.tasks.filter((task) => task.id !== taskId) }
+					: list,
+			);
+			this.saveLists(updatedLists);
+			return updatedLists;
+		});
+	}
 }

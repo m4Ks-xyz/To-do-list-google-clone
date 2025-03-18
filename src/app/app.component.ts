@@ -40,6 +40,10 @@ export class AppComponent {
 		this.#toDoListService.removeList(id);
 	}
 
+	removeTask(taskData: { listId: string; taskId: string }): void {
+		this.#toDoListService.removeTask(taskData.listId, taskData.taskId);
+	}
+
 	addNewTask(taskData: { listId: string; task: Task }): void {
 		this.#toDoListService.addNewTask(taskData);
 	}

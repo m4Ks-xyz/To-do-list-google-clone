@@ -2,9 +2,13 @@
 <div class="content">
 	<app-side-nav
 		[sidenavIsOpen]="openedSideNav()"
-		(newListContent)="addNewList($event)"
+		(newList)="addNewList($event)"
 	/>
 	<div class="content__lists">
-		<app-to-do-list [toDoLists]="allLists()" (removeList)="removeList($event)" />
+		<app-to-do-list
+			[toDoLists]="allLists()"
+			(removeList)="removeList($event)"
+			(newTask)="addNewTask($event)"
+		/>
 	</div>
 </div>

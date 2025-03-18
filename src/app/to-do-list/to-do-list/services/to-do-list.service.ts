@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { ToDoList } from '../models/to-do-list.model';
+import { Task } from '../models/tasks.model';
 
 const STORAGE_KEY = 'toDoLists';
 
@@ -22,6 +23,19 @@ export class ToDoListService {
 	addNewList(newList: { id: string; title: string }): void {
 		this.#toDoLists.update((lists) => {
 			const updatedLists = [...lists, { ...newList, tasks: [] }];
+			this.saveLists(updatedLists);
+			return updatedLists;
+		});
+	}
+
+	addNewTask(newTask: { listId: string; task: Task }): void {
+		this.#toDoLists.update((lists) => {
+			const updatedLists = lists.map((list) =>
+				list.id === newTask.listId
+					? { ...list, tasks: [...list.tasks, newTask.task] }
+					: list,
+			);
+
 			this.saveLists(updatedLists);
 			return updatedLists;
 		});

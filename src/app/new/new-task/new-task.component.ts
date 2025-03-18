@@ -10,8 +10,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatTimepickerModule } from '@angular/material/timepicker';
 
 @Component({
 	selector: 'app-new-task',
@@ -24,6 +25,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 		MatButtonModule,
 		MatDialogModule,
 		ReactiveFormsModule,
+		MatTimepickerModule,
 	],
 	templateUrl: './new-task.component.html',
 	styleUrl: './new-task.component.scss',
@@ -31,9 +33,19 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 })
 export class NewTaskComponent {
 	readonly #fb = inject(FormBuilder);
+	readonly dialogRef = inject(MatDialogRef);
 
 	form = this.#fb.group({
 		title: ['', Validators.required],
-		description: ['', Validators.required],
+		description: [''],
+		date: [''],
+		time: [''],
 	});
+
+	onSubmit(): void {
+		this.form.controls.title.markAsTouched();
+		if (this.form.valid) {
+			this.dialogRef.close(this.form.value);
+		}
+	}
 }

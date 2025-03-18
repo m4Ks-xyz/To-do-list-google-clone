@@ -36,16 +36,16 @@ import { generateRandomId } from '../../utils/generate-random-id.util';
 export class SideNavComponent {
 	readonly dialog = inject(MatDialog);
 	readonly sidenavIsOpen = input<boolean>(true);
-	readonly newListContent = output<{ id: string; title: string }>();
+	readonly newList = output<{ id: string; title: string }>();
 	showFiller: boolean = true;
 
-	openDialog() {
+	openDialog(): void {
 		const openDialog = this.dialog.open(NewListComponent);
 
 		openDialog.afterClosed().subscribe((data) => {
 			if (data) {
 				const randomId = generateRandomId();
-				this.newListContent.emit({ id: randomId, ...data });
+				this.newList.emit({ id: randomId, ...data });
 			}
 		});
 	}

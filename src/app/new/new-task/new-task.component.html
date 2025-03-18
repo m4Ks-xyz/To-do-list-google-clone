@@ -1,8 +1,25 @@
-
+<h2 mat-dialog-title>Dodaj zdanie</h2>
+<mat-dialog-content class="mat-typography">
+	<form class="form" [formGroup]="form">
+		<mat-form-field class="form__input">
+			<mat-label>Dodaj tytuł</mat-label>
+			<input formControlName="title" matInput placeholder="Tytuł zadania" />
+			@if (form.controls.title.hasError("required")) {
+				<mat-error>Tytuł jest <strong>wymagany</strong></mat-error>
+			}
+		</mat-form-field>
+		<mat-form-field class="form__input">
+			<mat-label>Szczegóły</mat-label>
+			<input
+				formControlName="description"
+				matInput
+				placeholder="Opis zadania"
+			/>
+		</mat-form-field>
 
 		<mat-form-field class="form__input">
 			<mat-label>Wybierz date</mat-label>
-			<input matInput [matDatepicker]="picker" />
+			<input formControlName="date" matInput [matDatepicker]="picker" />
 			<mat-hint>MM/DD/YYYY</mat-hint>
 			<mat-datepicker-toggle
 				matIconSuffix
@@ -10,3 +27,17 @@
 			></mat-datepicker-toggle>
 			<mat-datepicker #picker></mat-datepicker>
 		</mat-form-field>
+		<!-- <mat-form-field class="form__input">
+			<mat-label>Godzina</mat-label>
+			<input matInput [matTimepicker]="timepicker" formControlName="time" />
+			<mat-timepicker #timepicker />
+			<mat-timepicker-toggle [for]="timepicker" matSuffix />
+		</mat-form-field> -->
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button (click)="onSubmit()" class="form__submit" mat-button cdkFocusInitial>
+		Utwórz
+	</button>
+	<button class="form__submit" mat-button mat-dialog-close>Anuluj</button>
+</mat-dialog-actions>

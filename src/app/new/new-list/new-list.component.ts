@@ -37,7 +37,7 @@ export class NewListComponent {
 		title: ['', Validators.required],
 	});
 
-	onSubmit() {
+	onSubmit(): void {
 		this.form.markAllAsTouched();
 		if (this.form.valid) {
 			this.dialogRef.close(this.form.value);

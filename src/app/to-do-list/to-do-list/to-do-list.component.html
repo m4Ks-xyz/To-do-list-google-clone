@@ -2,6 +2,7 @@
 	<div class="my-list">
 		<div class="my-list__header">
 			<h2 class="my-list__title">{{ list.title }}</h2>
+			<div class="my-list__group"></div>
 			<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu ">
 				<mat-icon>more_vert</mat-icon>
 			</button>
@@ -15,6 +16,14 @@
 					<span>Zmień nazwe listy</span>
 				</button>
 			</mat-menu>
+			<button
+				(click)="openDialog(list.id)"
+				class="my-list__button"
+				mat-menu-item
+			>
+				<mat-icon>add_task</mat-icon>
+				<span>Dodaj zadanie</span>
+			</button>
 		</div>
 
 		<div class="task-list">
@@ -22,14 +31,17 @@
 				@for (task of list.tasks; track task.id) {
 					<div class="task-list__item">
 						<div class="task-list__group">
-							<p class="task-list__item__date">
-								<mat-icon
-									aria-hidden="false"
-									aria-label="Calendar icon"
-									fontIcon="event"
-								></mat-icon>
-								{{ task.date }}
-							</p>
+							@if (task.date) {
+								<p class="task-list__item__date">
+									<mat-icon
+										aria-hidden="false"
+										aria-label="Calendar icon"
+										fontIcon="event"
+									></mat-icon>
+									{{ task.date | date: "MMM d, y" }}
+								</p>
+							}
+
 							<h3 class="task-list__item__title">{{ task.title }}</h3>
 							<p class="task-list__item__description">
 								{{ task.description }}

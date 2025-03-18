@@ -14,11 +14,21 @@
 
 	&__header {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 		padding-left: 0.5rem;
 		gap: 1rem;
 		line-height: 1.5rem;
+	}
+
+	&__button {
+		--mat-menu-item-icon-color: var(--text-active);
+		width: 100%;
+		margin-bottom: 0.5rem;
+		border-radius: 2rem;
+		color: var(--text-active);
+		font-weight: bold;
 	}
 
 	.task-list {

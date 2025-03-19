@@ -90,10 +90,14 @@ export class ToDoListComponent {
 			if (data) {
 				this.editTask.emit({
 					listId: listId,
-					updatedTask: data,
 					taskId: taskData.id,
+					updatedTask: data,
 				});
-				console.log(JSON.stringify({ updatedTask: data }));
+				console.log(
+					JSON.stringify({
+						updatedTask: data,
+					}),
+				);
 			}
 		});
 	}

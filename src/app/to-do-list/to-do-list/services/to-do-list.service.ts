@@ -85,12 +85,13 @@ export class ToDoListService {
 					? {
 							...list,
 							tasks: list.tasks.map((task) =>
-								task.id === taskData.taskId ? taskData.updatedTask : task,
+								task.id === taskData.taskId
+									? { ...taskData.updatedTask, id: task.id }
+									: task,
 							),
 						}
 					: list,
 			);
-			console.log('Nowe listy: ' + JSON.stringify(updatedLists));
 			this.saveLists(updatedLists);
 			return updatedLists;
 		});

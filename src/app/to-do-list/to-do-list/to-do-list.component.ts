@@ -18,6 +18,7 @@ import { Task } from './models/tasks.model';
 import { generateRandomId } from '../../utils/generate-random-id.util';
 import { DatePipe } from '@angular/common';
 import { EditListComponent } from '../../edit/edit-list/edit-list.component';
+import { EditTaskComponent } from '../../edit/edit-task/edit-task.component';
 
 @Component({
 	selector: 'app-to-do-list',
@@ -43,6 +44,11 @@ export class ToDoListComponent {
 		task: Task;
 	}>();
 	readonly editList = output<{ listId: string; updatedTitle: string }>();
+	readonly editTask = output<{
+		listId: string;
+		updatedTask: Task;
+		taskId: string;
+	}>();
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
 	}
@@ -71,6 +77,23 @@ export class ToDoListComponent {
 			if (data) {
 				this.editList.emit({ listId: listId, updatedTitle: data.title });
 				console.log(data);
+			}
+		});
+	}
+
+	openDialogEditTask(listId: string, taskData: Task): void {
+		const openDialog = this.#dialog.open(EditTaskComponent, {
+			data: taskData,
+		});
+
+		openDialog.afterClosed().subscribe((data): void => {
+			if (data) {
+				this.editTask.emit({
+					listId: listId,
+					updatedTask: data,
+					taskId: taskData.id,
+				});
+				console.log(JSON.stringify({ updatedTask: data }));
 			}
 		});
 	}

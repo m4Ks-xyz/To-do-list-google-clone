@@ -4,6 +4,7 @@
 }
 
 .my-list {
+	width: max-content;
 	min-width: 16rem;
 	height: max-content;
 	max-height: 87vh;
@@ -36,12 +37,12 @@
 		overflow: auto;
 
 		&__empty-state {
-			padding:2.5rem 4rem 5rem;
+			padding: 2.5rem 4rem 5rem;
 			text-align: center;
 
-      &__img{
-        width: 6.5rem;
-      }
+			&__img {
+				width: 6.5rem;
+			}
 
 			&__title {
 				width: 100%;

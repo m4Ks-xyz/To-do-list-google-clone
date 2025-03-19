@@ -47,4 +47,8 @@ export class AppComponent {
 	addNewTask(taskData: { listId: string; task: Task }): void {
 		this.#toDoListService.addNewTask(taskData);
 	}
+
+  editList(listData:{listId:string, updatedTitle: string}):void{
+    this.#toDoListService.editList(listData)
+  }
 }

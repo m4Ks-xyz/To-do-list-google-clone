@@ -60,4 +60,16 @@ export class ToDoListService {
 			return updatedLists;
 		});
 	}
+
+	editList(listData: { listId: string; updatedTitle: string }): void {
+		this.#toDoLists.update((lists) => {
+			const updatedLists = lists.map((list) =>
+				list.id === listData.listId
+					? { ...list, title: listData.updatedTitle }
+					: list,
+			);
+			this.saveLists(updatedLists);
+			return updatedLists;
+		});
+	}
 }

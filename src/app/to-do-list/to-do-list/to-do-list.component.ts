@@ -17,6 +17,7 @@ import { NewTaskComponent } from '../../new/new-task/new-task.component';
 import { Task } from './models/tasks.model';
 import { generateRandomId } from '../../utils/generate-random-id.util';
 import { DatePipe } from '@angular/common';
+import { EditListComponent } from '../../edit/edit-list/edit-list.component';
 
 @Component({
 	selector: 'app-to-do-list',
@@ -41,7 +42,7 @@ export class ToDoListComponent {
 		listId: string;
 		task: Task;
 	}>();
-
+	readonly editList = output<{ listId: string; updatedTitle: string }>();
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
 	}
@@ -50,13 +51,26 @@ export class ToDoListComponent {
 		this.removeTask.emit({ listId, taskId });
 	}
 
-	openDialog(listId: string): void {
+	openDialogNewTask(listId: string): void {
 		const openDialog = this.#dialog.open(NewTaskComponent);
 
-		openDialog.afterClosed().subscribe((data) => {
+		openDialog.afterClosed().subscribe((data): void => {
 			if (data) {
 				const randomId = generateRandomId();
 				this.newTask.emit({ listId: listId, task: { id: randomId, ...data } });
+			}
+		});
+	}
+
+	openDialogEditList(listId: string, listTitle: string): void {
+		const openDialog = this.#dialog.open(EditListComponent, {
+			data: listTitle,
+		});
+
+		openDialog.afterClosed().subscribe((data): void => {
+			if (data) {
+				this.editList.emit({ listId: listId, updatedTitle: data.title });
+				console.log(data);
 			}
 		});
 	}

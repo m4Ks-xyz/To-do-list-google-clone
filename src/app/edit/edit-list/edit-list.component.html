@@ -1,1 +1,16 @@
-<p>edit-list works!</p>
+<h2 mat-dialog-title>Edytuj listę</h2>
+<mat-dialog-content class="mat-typography">
+	<form class="form" [formGroup]="form">
+		<mat-form-field class="form__input">
+			<mat-label>Dodaj tytuł</mat-label>
+			<input formControlName="title" matInput placeholder="Moja lista" />
+			@if (form.controls.title.hasError("required")) {
+				<mat-error>Tytuł jest <strong>wymagany</strong></mat-error>
+			}
+		</mat-form-field>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button (click)="onSubmit()" class="form__submit" mat-button cdkFocusInitial>Zapisz</button>
+	<button class="form__submit" mat-button mat-dialog-close>Anuluj</button>
+</mat-dialog-actions>

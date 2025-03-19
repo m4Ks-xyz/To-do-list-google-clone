@@ -11,14 +11,15 @@
 					<mat-icon>delete</mat-icon>
 					<span>Usuń liste</span>
 				</button>
-				<button mat-menu-item>
+				<button (click)="openDialogEditList(list.id, list.title)" mat-menu-item>
 					<mat-icon>edit_square</mat-icon>
 					<span>Zmień nazwe listy</span>
 				</button>
 			</mat-menu>
 			<button
-				(click)="openDialog(list.id)"
+				(click)="openDialogNewTask(list.id)"
 				class="my-list__button"
+				S
 				mat-menu-item
 			>
 				<mat-icon>add_task</mat-icon>
@@ -86,8 +87,8 @@
 					<div class="task-list__empty-state">
 						<img
 							class="task-list__empty-state__img"
-							src="empty-tasks-dark.svg"
-							alt=""
+							src="empty-tasks-dark.png"
+							alt="Grafika listy zdań"
 						/>
 						<h3 class="task-list__empty-state__title">
 							Nie ma jeszcze żadnych zadań

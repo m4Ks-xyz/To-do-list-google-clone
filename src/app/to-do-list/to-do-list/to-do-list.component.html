@@ -51,6 +51,7 @@
 
 						<div class="task-list__group task-list__group--icons">
 							<button
+								(click)="addAsComplete(list.id, task.id)"
 								class="task-list__group__button"
 								mat-fab
 								aria-label="Favorite icon"
@@ -61,17 +62,16 @@
 							</button>
 
 							<button
-								mat-icon-button
+								class="task-list__group__button"
+								mat-fab
 								[matMenuTriggerFor]="menu"
 								aria-label="Menu "
 							>
-								<mat-icon>more_vert</mat-icon>
+								<mat-icon class="task-list__group__button__icon"
+									>more_vert</mat-icon
+								>
 							</button>
 							<mat-menu #menu="matMenu">
-								<button mat-menu-item>
-									<mat-icon>star_border</mat-icon>
-									<span>Ulubione</span>
-								</button>
 								<button
 									(click)="openDialogEditTask(list.id, task)"
 									mat-menu-item
@@ -84,6 +84,25 @@
 									<span>Usuń</span>
 								</button>
 							</mat-menu>
+							<button
+								(click)="addAsFavorite(list.id, task.id)"
+								[class]="
+									task.favorite
+										? 'task-list__group__button--favorite' +
+											' task-list__group__button'
+										: 'task-list__group__button'
+								"
+								mat-fab
+								aria-label="Favorite icon"
+							>
+								<mat-icon class="task-list__group__button__icon">
+									@if (task.favorite) {
+										star
+									} @else {
+										star_border
+									}
+								</mat-icon>
+							</button>
 						</div>
 					</div>
 				} @empty {

@@ -48,6 +48,8 @@ export class ToDoListComponent {
 		listId: string;
 		updatedTask: Task;
 	}>();
+	readonly asFavorite = output<{ listId: string; taskId: string }>();
+	readonly asComplete = output<{ listId: string; taskId: string }>();
 
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
@@ -94,5 +96,15 @@ export class ToDoListComponent {
 				});
 			}
 		});
+	}
+
+	addAsFavorite(listId: string, taskId: string): void {
+		const taskData = { listId, taskId };
+		this.asFavorite.emit(taskData);
+	}
+
+	addAsComplete(listId: string, taskId: string): void {
+		const taskData = { listId, taskId };
+		this.asComplete.emit(taskData);
 	}
 }

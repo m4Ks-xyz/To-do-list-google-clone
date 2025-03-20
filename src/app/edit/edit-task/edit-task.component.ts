@@ -37,6 +37,8 @@ export class EditTaskComponent {
 		title: [this.#initialDialogData.title],
 		description: [this.#initialDialogData.description],
 		date: [this.#initialDialogData.date],
+		favorite: [this.#initialDialogData.favorite],
+		complete: [this.#initialDialogData.complete],
 	});
 
 	onSubmit(): void {

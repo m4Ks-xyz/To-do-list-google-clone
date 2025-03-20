@@ -71,12 +71,13 @@
 			border-radius: 0.25rem;
 			transition: background 0.3s ease;
 
-			&:hover .task-list__group--icons {
+			&:hover .task-list__group__button {
 				opacity: 1;
 			}
 
-			&:hover {
-				background-color: var(--background);
+			&:hover .task-list__group__button--favorite {
+				background-color: var(--background-2);
+				transition: background-color 0.4s ease;
 			}
 
 			&__title {
@@ -109,11 +110,21 @@
 		&__group {
 			line-height: 1.5rem;
 
-			&__button {
+			&__button,
+			&__button--favorite {
 				width: 2.2rem;
 				height: 2.2rem;
 				background-color: var(--background-2);
 				color: var(--text);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+
+				&--favorite {
+					background-color: #121214;
+					box-shadow: none;
+					color: var(--text-active);
+					opacity: 1;
+				}
 
 				&:hover {
 					background-color: #121214;
@@ -130,8 +141,6 @@
 			&--icons {
 				display: flex;
 				gap: 1rem;
-				opacity: 0;
-				transition: opacity 0.3s ease;
 			}
 		}
 	}

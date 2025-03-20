@@ -40,6 +40,8 @@ export class NewTaskComponent {
 		description: [''],
 		date: [''],
 		time: [''],
+		favorite: [false],
+		complete: [false],
 	});
 
 	onSubmit(): void {

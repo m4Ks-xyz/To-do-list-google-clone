@@ -47,8 +47,8 @@ export class ToDoListComponent {
 	readonly editTask = output<{
 		listId: string;
 		updatedTask: Task;
-		taskId: string;
 	}>();
+
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
 	}
@@ -90,14 +90,8 @@ export class ToDoListComponent {
 			if (data) {
 				this.editTask.emit({
 					listId: listId,
-					taskId: taskData.id,
 					updatedTask: data,
 				});
-				console.log(
-					JSON.stringify({
-						updatedTask: data,
-					}),
-				);
 			}
 		});
 	}

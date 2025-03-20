@@ -73,20 +73,15 @@ export class ToDoListService {
 		});
 	}
 
-	editTask(taskData: {
-		listId: string;
-		updatedTask: Task;
-		taskId: string;
-	}): void {
+	editTask(taskData: { listId: string; updatedTask: Task }): void {
 		this.#toDoLists.update((lists) => {
-			console.log('Stare lisrty:' + JSON.stringify(lists));
 			const updatedLists = lists.map((list) =>
 				list.id === taskData.listId
 					? {
 							...list,
 							tasks: list.tasks.map((task) =>
-								task.id === taskData.taskId
-									? { ...taskData.updatedTask, id: task.id }
+								task.id === taskData.updatedTask.id
+									? taskData.updatedTask
 									: task,
 							),
 						}

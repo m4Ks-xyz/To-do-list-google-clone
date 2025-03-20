@@ -33,6 +33,7 @@ export class EditTaskComponent {
 	readonly #dialogRef = inject(MatDialogRef);
 
 	form = this.#fb.group({
+		id: [this.#initialDialogData.id],
 		title: [this.#initialDialogData.title],
 		description: [this.#initialDialogData.description],
 		date: [this.#initialDialogData.date],

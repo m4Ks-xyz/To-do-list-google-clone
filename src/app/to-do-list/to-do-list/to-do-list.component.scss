@@ -75,7 +75,7 @@
 			}
 
 			&:hover .task-list__group__button--favorite {
-				background-color: var(--background-2);
+				background-color: var(--bg-neutral-dark);
 				transition: background-color 0.4s ease;
 			}
 
@@ -121,7 +121,7 @@
 			&__button {
 				width: 2.2rem;
 				height: 2.2rem;
-				background-color: var(--background-2);
+				background-color: var(--bg-neutral-dark);
 				color: var(--text);
 				opacity: 0;
 				transition: opacity 0.3s ease;

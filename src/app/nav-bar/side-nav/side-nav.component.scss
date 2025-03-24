@@ -33,6 +33,7 @@
 		}
 
 		&__checkbox {
+			width: 100%;
 			padding: 0 0 0 1rem;
 		}
 
@@ -49,6 +50,10 @@
 			justify-content: start;
 			width: 100%;
 			box-shadow: none;
+
+			&:focus {
+				box-shadow: none;
+			}
 		}
 	}
 }

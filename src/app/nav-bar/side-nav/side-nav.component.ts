@@ -16,6 +16,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { NewListComponent } from '../../new/new-list/new-list.component';
 import { generateRandomId } from '../../utils/generate-random-id.util';
+import { ToDoList } from '../../to-do-list/to-do-list/models/to-do-list.model';
 
 @Component({
 	selector: 'app-side-nav',
@@ -36,6 +37,7 @@ import { generateRandomId } from '../../utils/generate-random-id.util';
 export class SideNavComponent {
 	readonly dialog = inject(MatDialog);
 	readonly sidenavIsOpen = input<boolean>(true);
+	readonly myLists = input.required<ToDoList[]>();
 	readonly newList = output<{ id: string; title: string }>();
 	showFiller: boolean = true;
 

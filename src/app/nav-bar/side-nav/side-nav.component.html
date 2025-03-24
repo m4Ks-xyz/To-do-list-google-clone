@@ -30,13 +30,15 @@
 			@if (showFiller) {
 				<mat-icon>keyboard_arrow_up</mat-icon>
 			} @else {
-				<mat-icon>keyboard_arrow_down</mat-icon>
+				<mat-icon>chevron_right</mat-icon>
 			}
 		</button>
 		@if (showFiller) {
-			<mat-checkbox class="example-margin side-nav__button__checkbox"
-				>Moje zadania</mat-checkbox
-			>
+			@for (list of myLists(); track list.id) {
+				<mat-checkbox class="example-margin side-nav__button__checkbox">
+					{{ list.title }}
+				</mat-checkbox>
+			}
 		}
 
 		<div class="side-nav__button__group">

@@ -3,17 +3,18 @@
 	<app-side-nav
 		[sidenavIsOpen]="openedSideNav()"
 		(newList)="addNewList($event)"
+		[myLists]="allLists()"
 	/>
 	<div class="content__lists">
 		<app-to-do-list
 			[toDoLists]="allLists()"
 			(removeList)="removeList($event)"
 			(newTask)="addNewTask($event)"
-      (removeTask)="removeTask($event)"
-      (editList)="editList($event)"
-      (editTask)="editTask($event)"
-      (asFavorite)="addAsFavorite($event)"
-      (asComplete)="addAsComplete($event)"
+			(removeTask)="removeTask($event)"
+			(editList)="editList($event)"
+			(editTask)="editTask($event)"
+			(asFavorite)="addAsFavorite($event)"
+			(asComplete)="addAsComplete($event)"
 		/>
 	</div>
 </div>

@@ -56,12 +56,10 @@ export class AppComponent {
 		this.#toDoListService.editTask(taskData);
 	}
 
-  addAsFavorite(taskData:{ listId: string; taskId: string }):void{
-    this.#toDoListService.addAsFavorite(taskData)
-  }
-  addAsComplete(taskData:{ listId: string; taskId: string }):void{
-    this.#toDoListService.addAsComplete(taskData)
-  }
-
-
+	addAsFavorite(taskData: { listId: string; taskId: string }): void {
+		this.#toDoListService.addAsFavorite(taskData);
+	}
+	addAsComplete(taskData: { listId: string; taskId: string }): void {
+		this.#toDoListService.addAsComplete(taskData);
+	}
 }

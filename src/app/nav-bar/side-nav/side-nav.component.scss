@@ -2,16 +2,16 @@
 	min-width: 14rem;
 	max-width: 15rem;
 	padding: 0.75rem 0.5rem 0;
-	background-color: var(--background);
+	background-color: var(--bg-neutral-dark);
 	font-size: 2rem;
 
 	.mat-mdc-unelevated-button:not(:disabled) {
 		justify-content: start;
-		background-color: var(--background);
+		background-color: var(--bg-neutral-dark);
 		color: var(--text);
 
 		&:hover {
-			background-color: var(--bg-neutral-dark);
+			background-color: var(--bg-neutral);
 		}
 
 		&:active {
@@ -20,12 +20,12 @@
 	}
 
 	.mat-mdc-raised-button:not(:disabled) {
-		background-color: var(--background);
+		background-color: var(--bg-neutral-dark);
 		color: var(--text);
 	}
 
 	&__button {
-		background-color: var(--bg-neutral-dark);
+		background-color: var(--bg-neutral);
 		color: var(--text);
 
 		&__group {

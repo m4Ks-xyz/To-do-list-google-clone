@@ -1,4 +1,4 @@
-import { Task } from './tasks.model';
+import { Task } from './task.model';
 
 export interface ToDoList {
 	id: string;

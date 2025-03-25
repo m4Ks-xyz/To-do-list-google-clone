@@ -1,6 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { ToDoList } from '../models/to-do-list.model';
-import { Task } from '../models/tasks.model';
+import { Task } from '../models/task.model';
 
 const STORAGE_KEY = 'toDoLists';
 
@@ -8,22 +8,27 @@ const STORAGE_KEY = 'toDoLists';
 	providedIn: 'root',
 })
 export class ToDoListService {
-	readonly #toDoLists = signal<ToDoList[]>(this.getLists());
+	constructor() {
+		effect((): void => {
+			this.#synchronizeLocalStorage(this.#toDoLists());
+		});
+	}
+
+	readonly #toDoLists = signal<ToDoList[]>(this.#getSavedTodos());
 	readonly toDoListsReadOnly = this.#toDoLists.asReadonly();
 
-	getLists(): ToDoList[] {
+	#getSavedTodos(): ToDoList[] {
 		const gettingLists = localStorage.getItem(STORAGE_KEY);
 		return gettingLists ? JSON.parse(gettingLists) : [];
 	}
 
-	saveLists(toDoList: ToDoList[]): void {
+	#synchronizeLocalStorage(toDoList: ToDoList[]): void {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(toDoList));
 	}
 
 	addNewList(newList: { id: string; title: string }): void {
 		this.#toDoLists.update((lists) => {
 			const updatedLists = [...lists, { ...newList, tasks: [] }];
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -36,7 +41,6 @@ export class ToDoListService {
 					: list,
 			);
 
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -55,7 +59,6 @@ export class ToDoListService {
 						}
 					: list,
 			);
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -74,7 +77,6 @@ export class ToDoListService {
 						}
 					: list,
 			);
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -82,7 +84,6 @@ export class ToDoListService {
 	removeList(id: string): void {
 		this.#toDoLists.update((lists) => {
 			const updatedLists = lists.filter((list) => list.id !== id);
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -94,7 +95,6 @@ export class ToDoListService {
 					? { ...list, tasks: list.tasks.filter((task) => task.id !== taskId) }
 					: list,
 			);
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -106,7 +106,6 @@ export class ToDoListService {
 					? { ...list, title: listData.updatedTitle }
 					: list,
 			);
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}
@@ -125,7 +124,6 @@ export class ToDoListService {
 						}
 					: list,
 			);
-			this.saveLists(updatedLists);
 			return updatedLists;
 		});
 	}

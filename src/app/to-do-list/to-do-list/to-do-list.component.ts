@@ -14,7 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToDoList } from './models/to-do-list.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NewTaskComponent } from '../../new/new-task/new-task.component';
-import { Task } from './models/tasks.model';
+import { Task } from './models/task.model';
 import { generateRandomId } from '../../utils/generate-random-id.util';
 import { DatePipe } from '@angular/common';
 import { EditListComponent } from '../../edit/edit-list/edit-list.component';

@@ -4,6 +4,7 @@ import {
 	inject,
 	input,
 	output,
+	signal,
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -39,7 +40,7 @@ export class SideNavComponent {
 	readonly sidenavIsOpen = input<boolean>(true);
 	readonly myLists = input.required<ToDoList[]>();
 	readonly newList = output<{ id: string; title: string }>();
-	showFiller: boolean = true;
+	showFiller = signal<boolean>(true);
 
 	openDialog(): void {
 		const openDialog = this.dialog.open(NewListComponent);

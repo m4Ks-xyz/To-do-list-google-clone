@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-	--background: #1b1b1b;
-	--bg-neutral-dark: #37393b;
-	--background-list: #121214;
+	--bg-neutral-dark: #1b1b1b;
+	--bg-neutral: #37393b;
+	--bg-neutral-list: #121214;
 	--hover: #40444b;
 	--text: #e2e2e3;
 	--text-active: #63a4cb;
@@ -58,7 +58,7 @@ html,
 body {
 	height: 100%;
 	overflow: hidden;
-	background-color: var(--background);
+	background-color: var(--bg-neutral-dark);
 }
 body {
 	margin: 0;

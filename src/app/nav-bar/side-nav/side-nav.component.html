@@ -23,17 +23,17 @@
 
 		<button
 			class="side-nav__button side-nav__button--toggle"
-			(click)="showFiller = !showFiller"
+			(click)="showFiller.set(!showFiller())"
 			mat-raised-button
 		>
 			<p>Listy</p>
-			@if (showFiller) {
+			@if (showFiller()) {
 				<mat-icon>keyboard_arrow_up</mat-icon>
 			} @else {
 				<mat-icon>chevron_right</mat-icon>
 			}
 		</button>
-		@if (showFiller) {
+		@if (showFiller()) {
 			@for (list of myLists(); track list.id) {
 				<mat-checkbox class="example-margin side-nav__button__checkbox">
 					{{ list.title }}

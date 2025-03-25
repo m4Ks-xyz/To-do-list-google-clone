@@ -33,8 +33,8 @@ import {
 })
 export class TaskFormDialogComponent {
 	readonly #fb = inject(FormBuilder);
+  
 	readonly #dialogRef = inject(MatDialogRef<TaskFormDialogResult>);
-
 	readonly initialDialogData = inject<TaskFormDialogData>(MAT_DIALOG_DATA);
 
 	form = this.#fb.group({

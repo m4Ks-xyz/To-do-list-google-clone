@@ -22,7 +22,7 @@ export class ListFormDialogService {
 			ListFormDialogComponent,
 			ListFormDialogData,
 			ListFormDialogResult
-		>(dialogCmp, { data: { list: list, mode: 'add' } });
+		>(dialogCmp, { data: {  list, mode: 'add' } });
 	}
 
 	async openEditListDialog(list: ToDoList) {
@@ -36,7 +36,7 @@ export class ListFormDialogService {
 			ListFormDialogResult
 		>(dialogCmp, {
 			data: {
-				list: list,
+				list,
 				mode: 'edit',
 			},
 		});

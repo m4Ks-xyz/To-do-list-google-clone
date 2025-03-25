@@ -36,8 +36,8 @@ import {
 })
 export class ListFormDialogComponent {
 	readonly #fb = inject(FormBuilder);
+  
 	readonly dialogRef = inject(MatDialogRef<ListFormDialogResult>);
-
 	readonly initialDialogData = inject<ListFormDialogData>(MAT_DIALOG_DATA);
 
 	form = this.#fb.group({

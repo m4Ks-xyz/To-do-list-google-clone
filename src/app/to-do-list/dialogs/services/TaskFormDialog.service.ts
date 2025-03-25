@@ -24,7 +24,7 @@ export class TaskFormDialogService {
 			TaskFormDialogResult
 		>(dialogCmp, {
 			data: {
-				task: task,
+				task,
 				mode: 'add',
 			},
 		});
@@ -41,7 +41,7 @@ export class TaskFormDialogService {
 			TaskFormDialogResult
 		>(dialogCmp, {
 			data: {
-				task: task,
+				task,
 				mode: 'edit',
 			},
 		});

@@ -15,10 +15,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToDoList } from './models/to-do-list.model';
 import { Task } from './models/task.model';
 import { generateRandomId } from '../../utils/generate-random-id.util';
-import { DatePipe } from '@angular/common';
 import { ListFormDialogService } from '../dialogs/services/ListFormDialog.service';
 import { TaskFormDialogService } from '../dialogs/services/TaskFormDialog.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ToDoListTaskComponent } from '../to-do-list-task/to-do-list-task.component';
 
 @Component({
 	selector: 'app-to-do-list',
@@ -28,7 +28,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 		MatIconModule,
 		MatRadioModule,
 		MatMenuModule,
-		DatePipe,
+		ToDoListTaskComponent,
 	],
 	templateUrl: './to-do-list.component.html',
 	styleUrl: './to-do-list.component.scss',
@@ -89,43 +89,15 @@ export class ToDoListComponent {
 			});
 	}
 
-	openDialogEditTask(listId: string, taskData: Task): void {
-		this.#taskFormDialogService
-			.openEditTaskDialog(taskData)
-			.then((dialogRef) => {
-				dialogRef
-					.afterClosed()
-					.pipe(takeUntilDestroyed(this.#destroyRef))
-					.subscribe((data) => {
-						if (data) {
-							this.editTask.emit({
-								listId: listId,
-								updatedTask: { ...data },
-							});
-						}
-					});
-			});
+	emitEditTaskData(taskData: { listId: string; updatedTask: Task }): void {
+		this.editTask.emit(taskData);
+	}
+
+	emitRemoveTaskData(taskData: { listId: string; taskId: string }): void {
+		this.removeTask.emit(taskData);
 	}
 
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
-	}
-
-	onRemoveTask(listId: string, taskId: string): void {
-		this.removeTask.emit({ listId, taskId });
-	}
-
-	addAsFavorite(listId: string, task: Task): void {
-		this.editTask.emit({
-			listId: listId,
-			updatedTask: { ...task, favorite: !task.favorite },
-		});
-	}
-
-	addAsComplete(listId: string, task: Task): void {
-		this.editTask.emit({
-			listId: listId,
-			updatedTask: { ...task, complete: !task.complete },
-		});
 	}
 }

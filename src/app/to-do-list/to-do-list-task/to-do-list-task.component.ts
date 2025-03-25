@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, input, output } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	DestroyRef,
+	inject,
+	input,
+	output,
+} from '@angular/core';
 import { Task } from '../to-do-list/models/task.model';
 import { DatePipe } from '@angular/common';
 
@@ -22,6 +29,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 	],
 	templateUrl: './to-do-list-task.component.html',
 	styleUrl: './to-do-list-task.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListTaskComponent {
 	readonly #destroyRef = inject(DestroyRef);
@@ -53,10 +61,6 @@ export class ToDoListTaskComponent {
 						}
 					});
 			});
-	}
-
-	onRemoveTask(listId: string, taskId: string): void {
-		this.removeTask.emit({ listId, taskId });
 	}
 
 	toggleFavorite(listId: string, task: Task): void {

@@ -33,5 +33,23 @@
 		font-weight: bold;
 	}
 
-	
+	.task-list {
+		&__empty-state {
+			padding: 2.5rem 4rem 5rem;
+			text-align: center;
+
+			&__img {
+				width: 6.5rem;
+			}
+
+			&__title {
+				width: 100%;
+				color: #5aad9f;
+			}
+
+			&__description {
+				width: 100%;
+			}
+		}
+	}
 }

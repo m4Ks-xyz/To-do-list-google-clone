@@ -1,6 +1,7 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	DestroyRef,
 	inject,
 	input,
 	output,
@@ -12,13 +13,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToDoList } from './models/to-do-list.model';
-import { MatDialog } from '@angular/material/dialog';
-import { NewTaskComponent } from '../../new/new-task/new-task.component';
 import { Task } from './models/task.model';
 import { generateRandomId } from '../../utils/generate-random-id.util';
 import { DatePipe } from '@angular/common';
-import { EditListComponent } from '../../edit/edit-list/edit-list.component';
-import { EditTaskComponent } from '../../edit/edit-task/edit-task.component';
+import { ListFormDialogService } from '../dialogs/services/ListFormDialog.service';
+import { TaskFormDialogService } from '../dialogs/services/TaskFormDialog.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
 	selector: 'app-to-do-list',
@@ -35,10 +35,16 @@ import { EditTaskComponent } from '../../edit/edit-task/edit-task.component';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListComponent {
-	readonly #dialog = inject(MatDialog);
+	readonly #destroyRef = inject(DestroyRef);
+
+	readonly #listFormDialogService = inject(ListFormDialogService);
+	readonly #taskFormDialogService = inject(TaskFormDialogService);
+
 	readonly toDoLists = input.required<ToDoList[]>();
+
 	readonly removeList = output<string>();
 	readonly removeTask = output<{ listId: string; taskId: string }>();
+
 	readonly newTask = output<{
 		listId: string;
 		task: Task;
@@ -48,8 +54,58 @@ export class ToDoListComponent {
 		listId: string;
 		updatedTask: Task;
 	}>();
-	readonly asFavorite = output<{ listId: string; taskId: string }>();
-	readonly asComplete = output<{ listId: string; taskId: string }>();
+
+	openDialogNewTask(listId: string): void {
+		this.#taskFormDialogService.openAddTaskDialog().then((dialogRef) => {
+			dialogRef
+				.afterClosed()
+				.pipe(takeUntilDestroyed(this.#destroyRef))
+				.subscribe((data) => {
+					if (data) {
+						this.newTask.emit({
+							listId: listId,
+							task: { ...data, id: generateRandomId() },
+						});
+					}
+				});
+		});
+	}
+
+	openEditListDialog(listData: ToDoList): void {
+		this.#listFormDialogService
+			.openEditListDialog(listData)
+			.then((dialogRef) => {
+				dialogRef
+					.afterClosed()
+					.pipe(takeUntilDestroyed(this.#destroyRef))
+					.subscribe((data) => {
+						if (data) {
+							this.editList.emit({
+								listId: listData.id,
+								updatedTitle: data.title,
+							});
+						}
+					});
+			});
+	}
+
+	openDialogEditTask(listId: string, taskData: Task): void {
+		this.#taskFormDialogService
+			.openEditTaskDialog(taskData)
+			.then((dialogRef) => {
+				dialogRef
+					.afterClosed()
+					.pipe(takeUntilDestroyed(this.#destroyRef))
+					.subscribe((data) => {
+						if (data) {
+							this.editTask.emit({
+								listId: listId,
+								updatedTask: { ...data },
+							});
+						}
+					});
+			});
+	}
 
 	onRemoveList(id: string): void {
 		this.removeList.emit(id);
@@ -59,52 +115,17 @@ export class ToDoListComponent {
 		this.removeTask.emit({ listId, taskId });
 	}
 
-	openDialogNewTask(listId: string): void {
-		const openDialog = this.#dialog.open(NewTaskComponent);
-
-		openDialog.afterClosed().subscribe((data): void => {
-			if (data) {
-				const randomId = generateRandomId();
-				this.newTask.emit({ listId: listId, task: { id: randomId, ...data } });
-			}
+	addAsFavorite(listId: string, task: Task): void {
+		this.editTask.emit({
+			listId: listId,
+			updatedTask: { ...task, favorite: !task.favorite },
 		});
 	}
 
-	openDialogEditList(listId: string, listTitle: string): void {
-		const openDialog = this.#dialog.open(EditListComponent, {
-			data: listTitle,
+	addAsComplete(listId: string, task: Task): void {
+		this.editTask.emit({
+			listId: listId,
+			updatedTask: { ...task, complete: !task.complete },
 		});
-
-		openDialog.afterClosed().subscribe((data): void => {
-			if (data) {
-				this.editList.emit({ listId: listId, updatedTitle: data.title });
-				console.log(data);
-			}
-		});
-	}
-
-	openDialogEditTask(listId: string, taskData: Task): void {
-		const openDialog = this.#dialog.open(EditTaskComponent, {
-			data: taskData,
-		});
-
-		openDialog.afterClosed().subscribe((data): void => {
-			if (data) {
-				this.editTask.emit({
-					listId: listId,
-					updatedTask: data,
-				});
-			}
-		});
-	}
-
-	addAsFavorite(listId: string, taskId: string): void {
-		const taskData = { listId, taskId };
-		this.asFavorite.emit(taskData);
-	}
-
-	addAsComplete(listId: string, taskId: string): void {
-		const taskData = { listId, taskId };
-		this.asComplete.emit(taskData);
 	}
 }

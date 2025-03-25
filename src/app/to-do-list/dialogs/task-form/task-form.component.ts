@@ -11,9 +11,13 @@ import {
 } from '@angular/material/dialog';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {
+	TaskFormDialogResult,
+	TaskFormDialogData,
+} from '../models/task-form-dialog.model';
 
 @Component({
-	selector: 'app-edit-task',
+	selector: 'app-task-form',
 	providers: [provideNativeDateAdapter()],
 	imports: [
 		FormsModule,
@@ -24,21 +28,22 @@ import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 		MatDialogModule,
 		ReactiveFormsModule,
 	],
-	templateUrl: './edit-task.component.html',
-	styleUrl: './edit-task.component.scss',
+	templateUrl: './task-form.component.html',
+	styleUrl: './task-form.component.scss',
 })
-export class EditTaskComponent {
+export class TaskFormDialogComponent {
 	readonly #fb = inject(FormBuilder);
-	readonly #initialDialogData = inject(MAT_DIALOG_DATA);
-	readonly #dialogRef = inject(MatDialogRef);
+	readonly #dialogRef = inject(MatDialogRef<TaskFormDialogResult>);
+
+	readonly initialDialogData = inject<TaskFormDialogData>(MAT_DIALOG_DATA);
 
 	form = this.#fb.group({
-		id: [this.#initialDialogData.id],
-		title: [this.#initialDialogData.title],
-		description: [this.#initialDialogData.description],
-		date: [this.#initialDialogData.date],
-		favorite: [this.#initialDialogData.favorite],
-		complete: [this.#initialDialogData.complete],
+		id: [this.initialDialogData.task?.id],
+		title: [this.initialDialogData.task?.title],
+		description: [this.initialDialogData.task?.description],
+		date: [this.initialDialogData.task?.date],
+		favorite: [this.initialDialogData.task?.favorite],
+		complete: [this.initialDialogData.task?.complete],
 	});
 
 	onSubmit(): void {

@@ -6,35 +6,44 @@ import {
 	Validators,
 } from '@angular/forms';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { provideNativeDateAdapter } from '@angular/material/core';
-
+import {
+	MatDialogRef,
+	MatDialogModule,
+	MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import {
+	ListFormDialogData,
+	ListFormDialogResult,
+} from '../models/list-form-dialog.model';
 @Component({
-	selector: 'app-new-list',
-	providers: [provideNativeDateAdapter()],
+	selector: 'app-edit-list',
+	templateUrl: './list-form.component.html',
 	imports: [
 		FormsModule,
 		MatFormFieldModule,
 		MatInputModule,
-		MatDatepickerModule,
 		MatButtonModule,
 		MatDialogModule,
 		ReactiveFormsModule,
 	],
-	templateUrl: './new-list.component.html',
-	styleUrl: './new-list.component.scss',
+	styleUrl: './list-form.component.scss',
+	providers: [provideNativeDateAdapter()],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewListComponent {
+export class ListFormDialogComponent {
 	readonly #fb = inject(FormBuilder);
-	readonly dialogRef = inject(MatDialogRef);
+	readonly dialogRef = inject(MatDialogRef<ListFormDialogResult>);
+
+	readonly initialDialogData = inject<ListFormDialogData>(MAT_DIALOG_DATA);
 
 	form = this.#fb.group({
-		title: ['', Validators.required],
+		id: [this.initialDialogData.list?.id],
+		title: [this.initialDialogData.list?.title, Validators.required],
+		tasks: [this.initialDialogData.list?.tasks],
 	});
 
 	onSubmit(): void {

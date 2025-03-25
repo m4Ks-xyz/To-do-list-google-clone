@@ -11,7 +11,7 @@
 					<mat-icon>delete</mat-icon>
 					<span>Usuń liste</span>
 				</button>
-				<button (click)="openDialogEditList(list.id, list.title)" mat-menu-item>
+				<button (click)="openEditListDialog(list)" mat-menu-item>
 					<mat-icon>edit_square</mat-icon>
 					<span>Zmień nazwe listy</span>
 				</button>
@@ -66,7 +66,7 @@
 
 						<div class="task-list__group task-list__group--icons">
 							<button
-								(click)="addAsComplete(list.id, task.id)"
+								(click)="addAsComplete(list.id, task)"
 								class="task-list__group__button"
 								mat-fab
 								aria-label="Favorite icon"
@@ -103,7 +103,7 @@
 								</button>
 							</mat-menu>
 							<button
-								(click)="addAsFavorite(list.id, task.id)"
+								(click)="addAsFavorite(list.id, task)"
 								[class]="
 									task.favorite
 										? 'task-list__group__button ' +

@@ -45,42 +45,6 @@ export class ToDoListService {
 		});
 	}
 
-	addAsFavorite(taskData: { listId: string; taskId: string }): void {
-		this.#toDoLists.update((lists) => {
-			const updatedLists = lists.map((list) =>
-				list.id === taskData.listId
-					? {
-							...list,
-							tasks: list.tasks.map((task) =>
-								task.id === taskData.taskId
-									? { ...task, favorite: !task.favorite }
-									: task,
-							),
-						}
-					: list,
-			);
-			return updatedLists;
-		});
-	}
-
-	addAsComplete(taskData: { listId: string; taskId: string }): void {
-		this.#toDoLists.update((lists) => {
-			const updatedLists = lists.map((list) =>
-				list.id === taskData.listId
-					? {
-							...list,
-							tasks: list.tasks.map((task) =>
-								task.id === taskData.taskId
-									? { ...task, complete: !task.complete }
-									: task,
-							),
-						}
-					: list,
-			);
-			return updatedLists;
-		});
-	}
-
 	removeList(id: string): void {
 		this.#toDoLists.update((lists) => {
 			const updatedLists = lists.filter((list) => list.id !== id);

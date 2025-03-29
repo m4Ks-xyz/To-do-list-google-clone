@@ -9,6 +9,8 @@
 			<input formControlName="title" matInput placeholder="Tytuł zadania" />
 			@if (form.controls.title.hasError("required")) {
 				<mat-error>Tytuł jest <strong>wymagany</strong></mat-error>
+			} @else if (form.controls.title.hasError("maxlength")) {
+				<mat-error><strong>Maksymalna</strong> ilość znaków to 40</mat-error>
 			}
 		</mat-form-field>
 		<mat-form-field class="form__input">
@@ -18,8 +20,10 @@
 				matInput
 				placeholder="Opis zadania"
 			/>
+			@if (form.controls.description.hasError("maxlength")) {
+				<mat-error><strong>Maksymalna</strong> długość znaków to 100</mat-error>
+			}
 		</mat-form-field>
-
 		<mat-form-field class="form__input">
 			<mat-label>Data</mat-label>
 			<input formControlName="date" matInput [matDatepicker]="picker" />
@@ -30,12 +34,13 @@
 			></mat-datepicker-toggle>
 			<mat-datepicker #picker></mat-datepicker>
 		</mat-form-field>
-		<!-- <mat-form-field class="form__input">
+
+		<mat-form-field class="form__input">
 			<mat-label>Godzina</mat-label>
-			<input matInput [matTimepicker]="timepicker" formControlName="time" />
+			<input formControlName="time" matInput [matTimepicker]="timepicker" />
 			<mat-timepicker #timepicker />
 			<mat-timepicker-toggle [for]="timepicker" matSuffix />
-		</mat-form-field> -->
+		</mat-form-field>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

@@ -35,7 +35,11 @@
 		</button>
 		@if (showFiller()) {
 			@for (list of myLists(); track list.id) {
-				<mat-checkbox class="example-margin side-nav__button__checkbox">
+				<mat-checkbox
+					[checked]="list.show"
+					(change)="toggleListVisibility.emit(list.id)"
+					class="example-margin side-nav__button__checkbox"
+				>
 					{{ list.title }}
 				</mat-checkbox>
 			}

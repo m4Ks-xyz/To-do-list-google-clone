@@ -28,7 +28,7 @@ export class ToDoListService {
 
 	addNewList(newList: { id: string; title: string }): void {
 		this.#toDoLists.update((lists) => {
-			const updatedLists = [...lists, { ...newList, tasks: [] }];
+			const updatedLists = [...lists, { ...newList, show: false, tasks: [] }];
 			return updatedLists;
 		});
 	}
@@ -63,7 +63,7 @@ export class ToDoListService {
 		});
 	}
 
-	editList(listData: { listId: string; updatedTitle: string }): void {
+	editListTitle(listData: { listId: string; updatedTitle: string }): void {
 		this.#toDoLists.update((lists) => {
 			const updatedLists = lists.map((list) =>
 				list.id === listData.listId
@@ -85,6 +85,20 @@ export class ToDoListService {
 									? taskData.updatedTask
 									: task,
 							),
+						}
+					: list,
+			);
+			return updatedLists;
+		});
+	}
+
+	toggleListVisibility(listId: string): void {
+		this.#toDoLists.update((lists) => {
+			const updatedLists = lists.map((list) =>
+				list.id === listId
+					? {
+							...list,
+							show: !list.show,
 						}
 					: list,
 			);

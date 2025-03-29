@@ -3,6 +3,7 @@ export interface Task {
 	title: string;
 	description: string;
 	date: string;
+	time: string;
 	favorite: boolean;
 	complete: boolean;
 }

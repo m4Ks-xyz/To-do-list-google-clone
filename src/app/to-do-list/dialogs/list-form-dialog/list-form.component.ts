@@ -36,13 +36,17 @@ import {
 })
 export class ListFormDialogComponent {
 	readonly #fb = inject(FormBuilder);
-  
+
 	readonly dialogRef = inject(MatDialogRef<ListFormDialogResult>);
 	readonly initialDialogData = inject<ListFormDialogData>(MAT_DIALOG_DATA);
 
 	form = this.#fb.group({
 		id: [this.initialDialogData.list?.id],
-		title: [this.initialDialogData.list?.title, Validators.required],
+		show: [this.initialDialogData.list?.show],
+		title: [
+			this.initialDialogData.list?.title,
+			{ validators: [Validators.required, Validators.maxLength(40)] },
+		],
 		tasks: [this.initialDialogData.list?.tasks],
 	});
 

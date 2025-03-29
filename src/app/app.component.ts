@@ -45,10 +45,14 @@ export class AppComponent {
 	}
 
 	editList(listData: { listId: string; updatedTitle: string }): void {
-		this.#toDoListService.editList(listData);
+		this.#toDoListService.editListTitle(listData);
 	}
 
 	editTask(taskData: { listId: string; updatedTask: Task }): void {
 		this.#toDoListService.editTask(taskData);
+	}
+
+	toggleListVisibility(listId: string): void {
+		this.#toDoListService.toggleListVisibility(listId);
 	}
 }

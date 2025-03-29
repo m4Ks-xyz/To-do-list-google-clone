@@ -1,57 +1,59 @@
 @for (list of toDoLists(); track list.id) {
-	<div class="my-list">
-		<div class="my-list__header">
-			<h2 class="my-list__title">{{ list.title }}</h2>
-			<div class="my-list__group"></div>
-			<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu ">
-				<mat-icon>more_vert</mat-icon>
-			</button>
-			<mat-menu #menu="matMenu">
-				<button (click)="onRemoveList(list.id)" mat-menu-item>
-					<mat-icon>delete</mat-icon>
-					<span>Usuń liste</span>
+	@if (list.show) {
+		<div class="my-list">
+			<div class="my-list__header">
+				<h2 class="my-list__title">{{ list.title }}</h2>
+				<div class="my-list__group"></div>
+				<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu ">
+					<mat-icon>more_vert</mat-icon>
 				</button>
-				<button (click)="openEditListDialog(list)" mat-menu-item>
-					<mat-icon>edit_square</mat-icon>
-					<span>Zmień nazwe listy</span>
+				<mat-menu #menu="matMenu">
+					<button (click)="onRemoveList(list.id)" mat-menu-item>
+						<mat-icon>delete</mat-icon>
+						<span>Usuń liste</span>
+					</button>
+					<button (click)="openEditListDialog(list)" mat-menu-item>
+						<mat-icon>edit_square</mat-icon>
+						<span>Zmień nazwe listy</span>
+					</button>
+				</mat-menu>
+				<button
+					(click)="openDialogNewTask(list.id)"
+					class="my-list__button"
+					S
+					mat-menu-item
+				>
+					<mat-icon>add_task</mat-icon>
+					<span>Dodaj zadanie</span>
 				</button>
-			</mat-menu>
-			<button
-				(click)="openDialogNewTask(list.id)"
-				class="my-list__button"
-				S
-				mat-menu-item
-			>
-				<mat-icon>add_task</mat-icon>
-				<span>Dodaj zadanie</span>
-			</button>
-		</div>
+			</div>
 
-		<div class="task-list">
-			<div class="task-list__items">
-				@for (task of list.tasks; track task.id) {
-					<app-to-do-list-task
-						[task]="task"
-						[listId]="list.id"
-						(editTask)="emitEditTaskData($event)"
-						(removeTask)="emitRemoveTaskData($event)"
-					/>
-				} @empty {
-					<div class="task-list__empty-state">
-						<img
-							class="task-list__empty-state__img"
-							src="empty-tasks-dark.png"
-							alt="Grafika listy zdań"
+			<div class="task-list">
+				<div class="task-list__items">
+					@for (task of list.tasks; track task.id) {
+						<app-to-do-list-task
+							[task]="task"
+							[listId]="list.id"
+							(editTask)="emitEditTaskData($event)"
+							(removeTask)="emitRemoveTaskData($event)"
 						/>
-						<h3 class="task-list__empty-state__title">
-							Nie ma jeszcze żadnych zadań
-						</h3>
-						<p class="task-list__empty-state__description">
-							Dodaj swoje zadania do wykonania już teraz
-						</p>
-					</div>
-				}
+					} @empty {
+						<div class="task-list__empty-state">
+							<img
+								class="task-list__empty-state__img"
+								src="empty-tasks-dark.png"
+								alt="Grafika listy zdań"
+							/>
+							<h3 class="task-list__empty-state__title">
+								Nie ma jeszcze żadnych zadań
+							</h3>
+							<p class="task-list__empty-state__description">
+								Dodaj swoje zadania do wykonania już teraz
+							</p>
+						</div>
+					}
+				</div>
 			</div>
 		</div>
-	</div>
+	}
 }

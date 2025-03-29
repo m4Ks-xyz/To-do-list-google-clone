@@ -46,6 +46,7 @@ export class SideNavComponent {
 	readonly myLists = input.required<ToDoList[]>();
 
 	readonly newList = output<{ id: string; title: string }>();
+	readonly toggleListVisibility = output<string>();
 
 	showFiller = signal<boolean>(true);
 

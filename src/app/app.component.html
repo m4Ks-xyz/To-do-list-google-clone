@@ -1,6 +1,7 @@
 <app-nav-bar (sideNavToggle)="toggleSideNav()" />
 <div class="content">
 	<app-side-nav
+		(toggleListVisibility)="toggleListVisibility($event)"
 		[sidenavIsOpen]="openedSideNav()"
 		(newList)="addNewList($event)"
 		[myLists]="allLists()"

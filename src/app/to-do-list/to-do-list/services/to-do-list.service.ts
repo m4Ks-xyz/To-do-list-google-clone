@@ -1,4 +1,4 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { ToDoList } from '../models/to-do-list.model';
 import { Task } from '../models/task.model';
 
@@ -12,10 +12,28 @@ export class ToDoListService {
 		effect((): void => {
 			this.#synchronizeLocalStorage(this.#toDoLists());
 		});
+
+		if (this.#toDoLists().length === 0) {
+			this.addNewList({
+				id: 'default',
+				title: 'Zadania główne',
+				default: true,
+			});
+		}
 	}
 
 	readonly #toDoLists = signal<ToDoList[]>(this.#getSavedTodos());
 	readonly toDoListsReadOnly = this.#toDoLists.asReadonly();
+
+	filteredListsFavoriteTasks = computed(() => {
+		if (this.filterActive()) {
+			return this.#toDoLists().map((lists) => ({
+				...lists,
+				tasks: lists.tasks.filter((task) => task.favorite === true),
+			}));
+		} else return this.#toDoLists();
+	});
+	filterActive = signal<boolean>(false);
 
 	#getSavedTodos(): ToDoList[] {
 		const gettingLists = localStorage.getItem(STORAGE_KEY);
@@ -26,9 +44,9 @@ export class ToDoListService {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(toDoList));
 	}
 
-	addNewList(newList: { id: string; title: string }): void {
+	addNewList(newList: { id: string; title: string; default: boolean }): void {
 		this.#toDoLists.update((lists) => {
-			const updatedLists = [...lists, { ...newList, show: false, tasks: [] }];
+			const updatedLists = [...lists, { ...newList, show: true, tasks: [] }];
 			return updatedLists;
 		});
 	}
@@ -104,5 +122,9 @@ export class ToDoListService {
 			);
 			return updatedLists;
 		});
+	}
+
+	toggleFavoriteShow(onlyFavoriteTasks: boolean) {
+		this.filterActive.set(onlyFavoriteTasks);
 	}
 }

@@ -5,6 +5,9 @@
 		[sidenavIsOpen]="openedSideNav()"
 		(newList)="addNewList($event)"
 		[myLists]="allLists()"
+		(toggleFavoriteShow)="toggleFavoriteShow($event)"
+		(newDefaultListTask)="addNewTask($event)"
+		[filterFavoriteActive]="filterActive()"
 	/>
 	<div class="content__lists">
 		<app-to-do-list
@@ -14,6 +17,7 @@
 			(removeTask)="removeTask($event)"
 			(editList)="editList($event)"
 			(editTask)="editTask($event)"
+			[filterFavoriteActive]="filterActive()"
 		/>
 	</div>
 </div>

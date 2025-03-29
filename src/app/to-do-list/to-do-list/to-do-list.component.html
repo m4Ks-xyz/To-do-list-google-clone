@@ -1,5 +1,7 @@
 @for (list of toDoLists(); track list.id) {
-	@if (list.show) {
+	@if (
+		list.show && !(list.tasks.length === 0 && filterFavoriteActive() === true)
+	) {
 		<div class="my-list">
 			<div class="my-list__header">
 				<h2 class="my-list__title">{{ list.title }}</h2>
@@ -8,7 +10,11 @@
 					<mat-icon>more_vert</mat-icon>
 				</button>
 				<mat-menu #menu="matMenu">
-					<button (click)="onRemoveList(list.id)" mat-menu-item>
+					<button
+						(click)="onRemoveList(list.id)"
+						[disabled]="list.default"
+						mat-menu-item
+					>
 						<mat-icon>delete</mat-icon>
 						<span>Usuń liste</span>
 					</button>

@@ -9,8 +9,12 @@
 			<mat-label> Nazwa listy </mat-label>
 
 			<input formControlName="title" matInput placeholder="Moja lista" />
-			@if (form.controls.title.hasError("maxlength")) {
+			@if (form.controls.title.hasError("required")) {
+				<mat-error><strong>Tytuł jest</strong> wymagany</mat-error>
+			} @else if (form.controls.title.hasError("maxlength")) {
 				<mat-error><strong>Maksymalna</strong> ilość znaków to 40</mat-error>
+			} @else if (form.controls.title.hasError("minlength")) {
+				<mat-error><strong>Minimalna</strong> ilość znaków to 3</mat-error>
 			}
 		</mat-form-field>
 	</form>

@@ -11,6 +11,8 @@
 				<mat-error>Tytuł jest <strong>wymagany</strong></mat-error>
 			} @else if (form.controls.title.hasError("maxlength")) {
 				<mat-error><strong>Maksymalna</strong> ilość znaków to 40</mat-error>
+			} @else if (form.controls.title.hasError("minlength")) {
+				<mat-error><strong>Minimalna</strong> ilość znaków to 3</mat-error>
 			}
 		</mat-form-field>
 		<mat-form-field class="form__input">
@@ -22,6 +24,8 @@
 			/>
 			@if (form.controls.description.hasError("maxlength")) {
 				<mat-error><strong>Maksymalna</strong> długość znaków to 100</mat-error>
+			} @else if (form.controls.title.hasError("minlength")) {
+				<mat-error><strong>Minimalna</strong> ilość znaków to 3</mat-error>
 			}
 		</mat-form-field>
 		<mat-form-field class="form__input">
@@ -31,6 +35,7 @@
 			<mat-datepicker-toggle
 				matIconSuffix
 				[for]="picker"
+				a
 			></mat-datepicker-toggle>
 			<mat-datepicker #picker></mat-datepicker>
 		</mat-form-field>

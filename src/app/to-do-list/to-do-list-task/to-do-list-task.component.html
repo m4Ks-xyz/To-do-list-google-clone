@@ -3,7 +3,7 @@
 	class="task-list__item"
 >
 	<div class="task-list__group">
-		@if (task().date) {
+		@if (task().date || task().time) {
 			<p class="task-list__item__date">
 				<mat-icon
 					aria-hidden="false"

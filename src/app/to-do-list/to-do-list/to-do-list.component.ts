@@ -41,6 +41,7 @@ export class ToDoListComponent {
 	readonly #taskFormDialogService = inject(TaskFormDialogService);
 
 	readonly toDoLists = input.required<ToDoList[]>();
+	readonly filterFavoriteActive = input.required<boolean>();
 
 	readonly removeList = output<string>();
 	readonly removeTask = output<{ listId: string; taskId: string }>();

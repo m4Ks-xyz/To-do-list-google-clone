@@ -49,16 +49,24 @@ export class TaskFormDialogComponent {
 		title: [
 			this.initialDialogData.task?.title,
 			{
-				validators: [Validators.required, Validators.maxLength(40)],
+				validators: [
+					Validators.required,
+					Validators.maxLength(40),
+					Validators.minLength(3),
+				],
 			},
 		],
 		description: [
 			this.initialDialogData.task?.description,
-			Validators.maxLength(100),
+			{ validators: [Validators.maxLength(100), Validators.minLength(3)] },
 		],
 		date: [this.initialDialogData.task?.date],
 		time: [this.initialDialogData.task?.time],
-		favorite: [this.initialDialogData.task?.favorite],
+		favorite: [
+			this.initialDialogData.task?.favorite
+				? this.initialDialogData.task?.favorite
+				: false,
+		],
 		complete: [this.initialDialogData.task?.complete],
 	});
 

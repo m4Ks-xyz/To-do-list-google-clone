@@ -6,17 +6,32 @@
 		[opened]="sidenavIsOpen()"
 		[style.display]="sidenavIsOpen() ? 'block' : 'none'"
 	>
-		<button class="side-nav__button side-nav__button--add" mat-fab extended>
+		<button
+			(click)="openDialogNewTaskDefaultList()"
+			class="side-nav__button side-nav__button--add"
+			mat-fab
+			extended
+		>
 			<mat-icon>add</mat-icon>
 			Utwórz
 		</button>
 
 		<div class="side-nav__button__group">
-			<button class="side-nav__button side-nav__button--select" mat-flat-button>
+			<button
+				(click)="toggleFavoriteShow.emit(false)"
+				[class.side-nav__button__active]="!filterFavoriteActive()"
+				class="side-nav__button side-nav__button--select"
+				mat-flat-button
+			>
 				<mat-icon>task_alt</mat-icon>Wszystkie zadania
 			</button>
 
-			<button class="side-nav__button side-nav__button--select" mat-flat-button>
+			<button
+				(click)="toggleFavoriteShow.emit(true)"
+				[class.side-nav__button__active]="filterFavoriteActive()"
+				class="side-nav__button side-nav__button--select"
+				mat-flat-button
+			>
 				<mat-icon>star_border</mat-icon>Oznaczone gwiazdką
 			</button>
 		</div>
@@ -47,7 +62,7 @@
 
 		<div class="side-nav__button__group">
 			<button
-				(click)="openDialog()"
+				(click)="openDialogAddList()"
 				class="side-nav__button side-nav__button--select"
 				mat-flat-button
 			>

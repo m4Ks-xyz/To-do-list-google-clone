@@ -19,16 +19,17 @@ import { Task } from './to-do-list/to-do-list/models/task.model';
 })
 export class AppComponent {
 	readonly #toDoListService = inject(ToDoListService);
-	readonly allLists = this.#toDoListService.toDoListsReadOnly;
+	readonly allLists = this.#toDoListService.filteredListsFavoriteTasks;
 
 	readonly openedSideNav = signal(true);
 	readonly addListState = signal(false);
+	readonly filterActive = this.#toDoListService.filterActive;
 
 	toggleSideNav(): void {
 		this.openedSideNav.update((prev) => !prev);
 	}
 
-	addNewList(listData: { id: string; title: string }): void {
+	addNewList(listData: { id: string; title: string; default: boolean }): void {
 		this.#toDoListService.addNewList(listData);
 	}
 
@@ -54,5 +55,9 @@ export class AppComponent {
 
 	toggleListVisibility(listId: string): void {
 		this.#toDoListService.toggleListVisibility(listId);
+	}
+
+	toggleFavoriteShow(onlyFavoriteTasks: boolean): void {
+		this.#toDoListService.toggleFavoriteShow(onlyFavoriteTasks);
 	}
 }

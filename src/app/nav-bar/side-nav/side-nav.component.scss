@@ -22,11 +22,19 @@
 	.mat-mdc-raised-button:not(:disabled) {
 		background-color: var(--bg-neutral-dark);
 		color: var(--text);
+
+		&:hover {
+			background-color: var(--bg-neutral);
+		}
 	}
 
 	&__button {
 		background-color: var(--bg-neutral);
 		color: var(--text);
+
+		&__active {
+			background-color: var(--main) !important;
+		}
 
 		&__group {
 			padding: 0.5rem 0;
@@ -35,10 +43,19 @@
 		&__checkbox {
 			width: 100%;
 			padding: 0 0 0 1rem;
+			border-radius: 2rem;
+
+			&:hover {
+				background-color: var(--bg-neutral);
+			}
 		}
 
 		&--add {
 			margin: 0 0 1.125rem 0.75rem;
+
+			&:hover {
+				background-color: var(--main);
+			}
 		}
 
 		&--select {

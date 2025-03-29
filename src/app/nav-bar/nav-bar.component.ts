@@ -13,8 +13,4 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class NavBarComponent {
 	sideNavToggle = output<void>();
-
-	toggleSideNav(): void {
-		this.sideNavToggle.emit();
-	}
 }

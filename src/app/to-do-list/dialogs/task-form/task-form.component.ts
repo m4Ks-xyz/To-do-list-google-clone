@@ -40,7 +40,6 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
 })
 export class TaskFormDialogComponent {
 	readonly #fb = inject(FormBuilder);
-
 	readonly initialDialogData = inject<TaskFormDialogData>(MAT_DIALOG_DATA);
 	readonly #dialogRef = inject(MatDialogRef<TaskFormDialogResult>);
 

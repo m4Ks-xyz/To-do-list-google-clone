@@ -41,13 +41,13 @@ import { Task } from '../../to-do-list/to-do-list/models/task.model';
 })
 export class SideNavComponent {
 	readonly #destroyRef = inject(DestroyRef);
-
 	readonly #listFormDialogService = inject(ListFormDialogService);
 	readonly #taskFormDialogService = inject(TaskFormDialogService);
 
 	readonly sidenavIsOpen = input<boolean>(true);
 	readonly myLists = input.required<ToDoList[]>();
 	readonly filterFavoriteActive = input.required<boolean>();
+	readonly defaultListId = input.required<string>();
 
 	readonly newList = output<{ id: string; title: string; default: boolean }>();
 	readonly toggleListVisibility = output<string>();
@@ -80,7 +80,7 @@ export class SideNavComponent {
 				.subscribe((data) => {
 					if (data) {
 						this.newDefaultListTask.emit({
-							listId: 'default',
+							listId: this.defaultListId(),
 							task: { ...data, id: generateRandomId() },
 						});
 					}

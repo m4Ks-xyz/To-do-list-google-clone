@@ -1,6 +1,7 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { ToDoList } from '../models/to-do-list.model';
 import { Task } from '../models/task.model';
+import { generateRandomId } from '../../../utils/generate-random-id.util';
 
 const STORAGE_KEY = 'toDoLists';
 
@@ -15,15 +16,12 @@ export class ToDoListService {
 
 		if (this.#toDoLists().length === 0) {
 			this.addNewList({
-				id: 'default',
+				id: generateRandomId(),
 				title: 'Zadania główne',
 				default: true,
 			});
 		}
 	}
-
-	readonly #toDoLists = signal<ToDoList[]>(this.#getSavedTodos());
-	readonly toDoListsReadOnly = this.#toDoLists.asReadonly();
 
 	filteredListsFavoriteTasks = computed(() => {
 		if (this.filterActive()) {
@@ -33,11 +31,22 @@ export class ToDoListService {
 			}));
 		} else return this.#toDoLists();
 	});
-	filterActive = signal<boolean>(false);
+
+	readonly #toDoLists = signal<ToDoList[]>(this.#getSavedTodos());
+	readonly filterActive = signal<boolean>(false);
+	readonly defaultListId = signal<string>(this.#getDefaultListId());
+
+	readonly toDoListsReadOnly = this.#toDoLists.asReadonly();
 
 	#getSavedTodos(): ToDoList[] {
 		const gettingLists = localStorage.getItem(STORAGE_KEY);
 		return gettingLists ? JSON.parse(gettingLists) : [];
+	}
+
+	#getDefaultListId(): string {
+		const defaultList = this.#toDoLists().find((list) => list.default === true);
+		console.log(this.defaultListId);
+		return defaultList ? defaultList.id : '';
 	}
 
 	#synchronizeLocalStorage(toDoList: ToDoList[]): void {

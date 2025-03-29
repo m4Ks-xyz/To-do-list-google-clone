@@ -23,7 +23,9 @@ export class AppComponent {
 
 	readonly openedSideNav = signal(true);
 	readonly addListState = signal(false);
+
 	readonly filterActive = this.#toDoListService.filterActive;
+	readonly defaultListId = this.#toDoListService.defaultListId;
 
 	toggleSideNav(): void {
 		this.openedSideNav.update((prev) => !prev);

@@ -36,7 +36,6 @@ import { ToDoListTaskComponent } from '../to-do-list-task/to-do-list-task.compon
 })
 export class ToDoListComponent {
 	readonly #destroyRef = inject(DestroyRef);
-
 	readonly #listFormDialogService = inject(ListFormDialogService);
 	readonly #taskFormDialogService = inject(TaskFormDialogService);
 
@@ -45,7 +44,6 @@ export class ToDoListComponent {
 
 	readonly removeList = output<string>();
 	readonly removeTask = output<{ listId: string; taskId: string }>();
-
 	readonly newTask = output<{
 		listId: string;
 		task: Task;

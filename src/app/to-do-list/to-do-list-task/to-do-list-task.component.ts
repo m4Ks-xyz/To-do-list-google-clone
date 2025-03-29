@@ -33,7 +33,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class ToDoListTaskComponent {
 	readonly #destroyRef = inject(DestroyRef);
-
 	readonly #taskFormDialogService = inject(TaskFormDialogService);
 
 	readonly task = input.required<Task>();

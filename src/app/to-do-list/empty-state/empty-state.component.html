@@ -1,0 +1,17 @@
+@let mode = emptyStateMode();
+
+@if (mode === "task") {
+	<div class="task-list__empty-state">
+		<img
+			class="task-list__empty-state__img"
+			src="empty-tasks-dark.png"
+			alt="Grafika listy zdań"
+		/>
+		<h3 class="task-list__empty-state__title">Nie ma jeszcze żadnych zadań</h3>
+		<p class="task-list__empty-state__description">
+			Dodaj swoje zadania do wykonania już teraz
+		</p>
+	</div>
+} @else if (mode === "favorite-tasks") {
+	<p>Empty fav tasks</p>
+}

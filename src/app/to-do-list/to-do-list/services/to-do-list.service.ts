@@ -45,7 +45,6 @@ export class ToDoListService {
 
 	#getDefaultListId(): string {
 		const defaultList = this.#toDoLists().find((list) => list.default === true);
-		console.log(this.defaultListId);
 		return defaultList ? defaultList.id : '';
 	}
 

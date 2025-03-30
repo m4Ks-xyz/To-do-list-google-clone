@@ -19,17 +19,19 @@ import { ListFormDialogService } from '../dialogs/services/ListFormDialog.servic
 import { TaskFormDialogService } from '../dialogs/services/TaskFormDialog.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ToDoListTaskComponent } from '../to-do-list-task/to-do-list-task.component';
+import { EmptyStateComponent } from "../empty-state/empty-state.component";
 
 @Component({
 	selector: 'app-to-do-list',
 	imports: [
-		MatButtonModule,
-		MatDividerModule,
-		MatIconModule,
-		MatRadioModule,
-		MatMenuModule,
-		ToDoListTaskComponent,
-	],
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatRadioModule,
+    MatMenuModule,
+    ToDoListTaskComponent,
+    EmptyStateComponent
+],
 	templateUrl: './to-do-list.component.html',
 	styleUrl: './to-do-list.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

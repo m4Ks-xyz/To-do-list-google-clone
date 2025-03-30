@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
 	FormBuilder,
 	ReactiveFormsModule,
@@ -37,6 +37,7 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
 	],
 	templateUrl: './task-form.component.html',
 	styleUrl: './task-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskFormDialogComponent {
 	readonly #fb = inject(FormBuilder);

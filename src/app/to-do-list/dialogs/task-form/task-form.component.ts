@@ -61,7 +61,7 @@ export class TaskFormDialogComponent {
 			{ validators: [Validators.maxLength(100), Validators.minLength(3)] },
 		],
 		date: [this.initialDialogData.task?.date],
-		time: [this.initialDialogData.task?.time],
+		time: [this.initialDialogData.task?.date],
 		favorite: [
 			this.initialDialogData.task?.favorite
 				? this.initialDialogData.task?.favorite
@@ -70,10 +70,34 @@ export class TaskFormDialogComponent {
 		complete: [this.initialDialogData.task?.complete],
 	});
 
+	#getMergedDates(
+		date: string | null | undefined,
+		time: string | null | undefined,
+	): string | null | undefined {
+		if (!date && !time) {
+			return null;
+		}
+		if (!date && time) {
+			return time;
+		}
+		if (date && !time) {
+			return date;
+		}
+
+		const mergedDate = new Date(date!);
+		const timeAsDate = new Date(time!);
+		mergedDate.setHours(timeAsDate.getHours(), timeAsDate.getMinutes());
+		return mergedDate.toISOString();
+	}
+
 	onSubmit(): void {
 		this.form.markAllAsTouched();
 		if (this.form.valid) {
-			this.#dialogRef.close(this.form.value);
+			const formValue = this.form.value;
+			this.#dialogRef.close({
+				...formValue,
+				date: this.#getMergedDates(formValue.date, formValue.time),
+			});
 		}
 	}
 }

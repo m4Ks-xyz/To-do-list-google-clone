@@ -51,3 +51,6 @@
 		</div>
 	}
 }
+@if (toDoLists().length === 0) {
+	<app-empty-state emptyStateMode="favorite-tasks" />
+}

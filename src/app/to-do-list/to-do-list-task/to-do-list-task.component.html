@@ -3,15 +3,14 @@
 	class="task-list__item"
 >
 	<div class="task-list__group">
-		@if (task().date || task().time) {
+		@if (task().date) {
 			<p class="task-list__item__date">
 				<mat-icon
 					aria-hidden="false"
 					aria-label="Calendar icon"
 					fontIcon="event"
 				></mat-icon>
-				{{ task().date | date: "d MMM, y" }}
-				{{ task().time | date: ", H:mm" }}
+				{{ task().date | date: "d MMM, y, HH:mm" }}
 			</p>
 		}
 

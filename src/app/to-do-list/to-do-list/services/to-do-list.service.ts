@@ -25,10 +25,12 @@ export class ToDoListService {
 
 	filteredListsFavoriteTasks = computed(() => {
 		if (this.filterActive()) {
-			return this.#toDoLists().map((lists) => ({
-				...lists,
-				tasks: lists.tasks.filter((task) => task.favorite === true),
-			}));
+			return this.#toDoLists()
+				.map((lists) => ({
+					...lists,
+					tasks: lists.tasks.filter((task) => task.favorite === true),
+				}))
+				.filter((tasks) => tasks.tasks.length > 0);
 		} else return this.#toDoLists();
 	});
 

@@ -10,8 +10,8 @@
 					aria-label="Calendar icon"
 					fontIcon="event"
 				></mat-icon>
-				{{ task().date | date: "MMM d, y" + ", " }}
-				{{ task().time | date: "h:mm a " }}
+				{{ task().date | date: "d MMM, y" }}
+				{{ task().time | date: ", H:mm" }}
 			</p>
 		}
 

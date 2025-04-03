@@ -44,14 +44,9 @@ export class ListFormDialogComponent {
 		show: [this.initialDialogData.list?.id],
 		title: [
 			this.initialDialogData.list?.title,
-			{
-				validators: [
-					Validators.required,
-					Validators.maxLength(40),
-					Validators.minLength(3),
-				],
-			},
+			[Validators.required, Validators.maxLength(40), Validators.minLength(3)],
 		],
+
 		default: [false],
 		tasks: [this.initialDialogData.list?.tasks],
 	});

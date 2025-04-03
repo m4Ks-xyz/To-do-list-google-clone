@@ -1,5 +1,6 @@
 import { computed, Directive, input, signal, OnDestroy } from '@angular/core';
-import { calculateTimeDifference } from '../../../utils/calculate-time-difference.util';
+import { calculateTimeDifference } from '../../utils/calculate-time-difference.util';
+import { TimeUnit } from '../../utils/time-unit.enum';
 
 @Directive({
 	selector: '[app-task-time]',
@@ -13,7 +14,7 @@ export class TaskTimeDirective implements OnDestroy {
 	readonly now = signal(new Date());
 	readonly intervalId = setInterval(() => {
 		this.now.set(new Date());
-	}, 1000 * 60);
+	}, TimeUnit.MINUTE);
 
 	readonly color = computed(() => {
 		const taskTimeDate = new Date(this.taskTime());

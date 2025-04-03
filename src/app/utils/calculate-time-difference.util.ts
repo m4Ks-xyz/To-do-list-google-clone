@@ -1,3 +1,5 @@
+import { TimeUnit } from './time-unit.enum';
+
 export interface TimeDifference {
 	days: number;
 	hours: number;
@@ -14,10 +16,10 @@ export function calculateTimeDifference(
 	const differenceMsAbs = Math.abs(fromDate.valueOf() - toDate.valueOf());
 	const isNegative = differenceMs < 0;
 
-	const seconds = Math.floor(differenceMsAbs / 1000) % 60;
-	const minutes = Math.floor(differenceMsAbs / (1000 * 60)) % 60;
-	const hours = Math.floor(differenceMsAbs / (1000 * 60 * 60)) % 24;
-	const days = Math.floor(differenceMsAbs / (1000 * 60 * 60 * 24));
+	const seconds = Math.floor(differenceMsAbs / TimeUnit.SECOND) % 60;
+	const minutes = Math.floor(differenceMsAbs / TimeUnit.MINUTE) % 60;
+	const hours = Math.floor(differenceMsAbs / TimeUnit.HOUR) % 24;
+	const days = Math.floor(differenceMsAbs / TimeUnit.DAY);
 
 	return {
 		days,

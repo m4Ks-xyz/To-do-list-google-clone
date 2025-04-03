@@ -17,7 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { TaskFormDialogService } from '../dialogs/services/TaskFormDialog.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TaskTimeDirective } from '../components/task-time/task-time.directive';
+import { TaskTimeDirective } from '../directives/task-time.directive';
 
 @Component({
 	selector: 'app-to-do-list-task',

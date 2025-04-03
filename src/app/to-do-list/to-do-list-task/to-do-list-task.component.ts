@@ -7,7 +7,7 @@ import {
 	output,
 	signal,
 } from '@angular/core';
-import { Task } from '../to-do-list/models/task.model';
+import { Task } from '../models/task.model';
 import { DatePipe } from '@angular/common';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { TaskFormDialogService } from '../dialogs/services/TaskFormDialog.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TaskTimeDirective } from '../components/task-time/task-time.directive';
 
 @Component({
 	selector: 'app-to-do-list-task',
@@ -27,6 +28,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 		MatIconModule,
 		MatRadioModule,
 		MatMenuModule,
+		TaskTimeDirective,
 	],
 	templateUrl: './to-do-list-task.component.html',
 	styleUrl: './to-do-list-task.component.scss',
@@ -70,18 +72,6 @@ export class ToDoListTaskComponent {
 			listId: listId,
 			updatedTask: { ...task, favorite: !task.favorite },
 		});
-		const taskDate = new Date(task.date);
-		console.log('DATA ' + taskDate.toUTCString());
-		const differenceMs = taskDate.valueOf() - this.date().valueOf();
-
-		const differenceSeconds = Math.floor(differenceMs / 1000);
-		const differenceMinutes = Math.floor(differenceMs / (1000 * 60));
-		const differenceHours = Math.floor(differenceMs / (1000 * 60 * 60));
-		const differenceDays = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
-
-		console.log(
-			`Difference: ${differenceDays} days, ${differenceHours % 24} hours, ${differenceMinutes % 60} minutes, ${differenceSeconds % 60} seconds`,
-		);
 	}
 
 	toggleComplete(listId: string, task: Task): void {

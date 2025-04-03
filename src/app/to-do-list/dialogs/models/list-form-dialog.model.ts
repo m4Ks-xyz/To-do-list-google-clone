@@ -1,4 +1,4 @@
-import { ToDoList } from '../../to-do-list/models/to-do-list.model';
+import { ToDoList } from '../../models/to-do-list.model';
 
 export interface ListFormDialogData {
 	list?: ToDoList;

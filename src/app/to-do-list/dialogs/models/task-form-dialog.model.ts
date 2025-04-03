@@ -1,4 +1,4 @@
-import { Task } from '../../to-do-list/models/task.model';
+import { Task } from '../../models/task.model';
 
 export interface TaskFormDialogData {
 	task?: Task;

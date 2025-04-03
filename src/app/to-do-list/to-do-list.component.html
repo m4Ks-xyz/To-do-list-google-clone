@@ -26,7 +26,6 @@
 				<button
 					(click)="openDialogNewTask(list.id)"
 					class="my-list__button"
-					S
 					mat-menu-item
 				>
 					<mat-icon>add_task</mat-icon>
@@ -44,13 +43,29 @@
 							(removeTask)="emitRemoveTaskData($event)"
 						/>
 					} @empty {
-						<app-empty-state emptyStateMode="task" />
+						<app-empty-state>
+							<img app-empty-state-img src="empty-tasks-dark.png" />
+							<ng-container app-empty-state-title>
+								Nie ma jeszcze żadnych zadań
+							</ng-container>
+							<ng-container app-empty-state-description>
+								Dodaj swoje zadania do wykonania już teraz
+							</ng-container>
+						</app-empty-state>
 					}
 				</div>
 			</div>
 		</div>
 	}
 }
-@if (toDoLists().length === 0) {
-	<app-empty-state emptyStateMode="favorite-tasks" />
+@if (toDoLists().length === 0 && filterFavoriteActive()) {
+	<app-empty-state>
+		<img app-empty-state-img src="empty-fav-task-dark.png" />
+		<ng-container app-empty-state-title>
+			Brak zadań oznaczonych gwiazdką
+		</ng-container>
+		<ng-container app-empty-state-description>
+			Oznacz ważne zadania gwiazdką, aby móc łatwo je tu znaleźć
+		</ng-container>
+	</app-empty-state>
 }

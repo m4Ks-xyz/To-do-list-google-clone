@@ -1,7 +1,7 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { ToDoList } from '../models/to-do-list.model';
 import { Task } from '../models/task.model';
-import { generateRandomId } from '../../../utils/generate-random-id.util';
+import { generateRandomId } from '../../utils/generate-random-id.util';
 
 const STORAGE_KEY = 'toDoLists';
 
@@ -13,14 +13,6 @@ export class ToDoListService {
 		effect((): void => {
 			this.#synchronizeLocalStorage(this.#toDoLists());
 		});
-
-		if (this.#toDoLists().length === 0) {
-			this.addNewList({
-				id: generateRandomId(),
-				title: 'Zadania główne',
-				default: true,
-			});
-		}
 	}
 
 	filteredListsFavoriteTasks = computed(() => {
@@ -42,7 +34,17 @@ export class ToDoListService {
 
 	#getSavedTodos(): ToDoList[] {
 		const gettingLists = localStorage.getItem(STORAGE_KEY);
-		return gettingLists ? JSON.parse(gettingLists) : [];
+		return gettingLists
+			? JSON.parse(gettingLists)
+			: [
+					{
+						id: generateRandomId(),
+						title: 'Zadania główne',
+						default: true,
+						show: true,
+						tasks: [],
+					},
+				];
 	}
 
 	#getDefaultListId(): string {

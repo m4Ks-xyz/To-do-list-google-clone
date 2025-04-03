@@ -3,8 +3,8 @@
 	class="task-list__item"
 >
 	<div class="task-list__group">
-		@if (task().date) {
-			<p class="task-list__item__date">
+		@if (task().date && !task().complete) {
+			<p class="task-list__item__date" app-task-time [taskTime]="task().date">
 				<mat-icon
 					aria-hidden="false"
 					aria-label="Calendar icon"

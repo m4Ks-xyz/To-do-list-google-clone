@@ -14,24 +14,24 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToDoList } from './models/to-do-list.model';
 import { Task } from './models/task.model';
-import { generateRandomId } from '../../utils/generate-random-id.util';
-import { ListFormDialogService } from '../dialogs/services/ListFormDialog.service';
-import { TaskFormDialogService } from '../dialogs/services/TaskFormDialog.service';
+import { generateRandomId } from '../utils/generate-random-id.util';
+import { ListFormDialogService } from './dialogs/services/ListFormDialog.service';
+import { TaskFormDialogService } from './dialogs/services/TaskFormDialog.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ToDoListTaskComponent } from '../to-do-list-task/to-do-list-task.component';
-import { EmptyStateComponent } from "../empty-state/empty-state.component";
+import { ToDoListTaskComponent } from './to-do-list-task/to-do-list-task.component';
+import { EmptyStateComponent } from './empty-state/empty-state-task.component';
 
 @Component({
 	selector: 'app-to-do-list',
 	imports: [
-    MatButtonModule,
-    MatDividerModule,
-    MatIconModule,
-    MatRadioModule,
-    MatMenuModule,
-    ToDoListTaskComponent,
-    EmptyStateComponent
-],
+		MatButtonModule,
+		MatDividerModule,
+		MatIconModule,
+		MatRadioModule,
+		MatMenuModule,
+		ToDoListTaskComponent,
+		EmptyStateComponent,
+	],
 	templateUrl: './to-do-list.component.html',
 	styleUrl: './to-do-list.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

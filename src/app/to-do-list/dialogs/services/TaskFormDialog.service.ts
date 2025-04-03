@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Task } from '../../to-do-list/models/task.model';
+import { Task } from '../../models/task.model';
 import { TaskFormDialogComponent } from '../task-form/task-form.component';
 import {
 	TaskFormDialogData,

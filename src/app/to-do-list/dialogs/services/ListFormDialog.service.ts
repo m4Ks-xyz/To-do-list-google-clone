@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ToDoList } from '../../to-do-list/models/to-do-list.model';
+import { ToDoList } from '../../models/to-do-list.model';
 import { ListFormDialogComponent } from '../list-form-dialog/list-form.component';
 import {
 	ListFormDialogData,
@@ -22,7 +22,7 @@ export class ListFormDialogService {
 			ListFormDialogComponent,
 			ListFormDialogData,
 			ListFormDialogResult
-		>(dialogCmp, { data: {  list, mode: 'add' } });
+		>(dialogCmp, { data: { list, mode: 'add' } });
 	}
 
 	async openEditListDialog(list: ToDoList) {

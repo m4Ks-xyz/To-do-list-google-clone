@@ -1,24 +1,6 @@
 .task-list {
 	overflow: auto;
 
-	&__empty-state {
-		padding: 2.5rem 4rem 5rem;
-		text-align: center;
-
-		&__img {
-			width: 6.5rem;
-		}
-
-		&__title {
-			width: 100%;
-			color: #5aad9f;
-		}
-
-		&__description {
-			width: 100%;
-		}
-	}
-
 	&__items {
 		max-height: 80vh;
 		padding-right: 0.5rem;
@@ -51,7 +33,7 @@
 		&__title {
 			min-width: 10rem;
 			margin: 0 0 0.125rem 0;
-			color: #5aad9f;
+			color: var(--text);
 			font-size: 1.5rem;
 
 			&--completed {

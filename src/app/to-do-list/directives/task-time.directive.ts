@@ -14,7 +14,7 @@ export class TaskTimeDirective implements OnDestroy {
 	readonly now = signal(new Date());
 	readonly intervalId = setInterval(() => {
 		this.now.set(new Date());
-	}, TimeUnit.MINUTE);
+	}, TimeUnit.Minute);
 
 	readonly color = computed(() => {
 		const taskTimeDate = new Date(this.taskTime());

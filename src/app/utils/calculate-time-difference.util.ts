@@ -16,10 +16,10 @@ export function calculateTimeDifference(
 	const differenceMsAbs = Math.abs(fromDate.valueOf() - toDate.valueOf());
 	const isNegative = differenceMs < 0;
 
-	const seconds = Math.floor(differenceMsAbs / TimeUnit.SECOND) % 60;
-	const minutes = Math.floor(differenceMsAbs / TimeUnit.MINUTE) % 60;
-	const hours = Math.floor(differenceMsAbs / TimeUnit.HOUR) % 24;
-	const days = Math.floor(differenceMsAbs / TimeUnit.DAY);
+	const seconds = Math.floor(differenceMsAbs / TimeUnit.Second) % 60;
+	const minutes = Math.floor(differenceMsAbs / TimeUnit.Minute) % 60;
+	const hours = Math.floor(differenceMsAbs / TimeUnit.Hour) % 24;
+	const days = Math.floor(differenceMsAbs / TimeUnit.Day);
 
 	return {
 		days,

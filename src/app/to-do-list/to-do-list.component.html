@@ -1,4 +1,4 @@
-@for (list of toDoLists(); track list.id) {
+@for (list of sortedToDoList(); track list.id) {
 	@if (
 		list.show && !(list.tasks.length === 0 && filterFavoriteActive() === true)
 	) {

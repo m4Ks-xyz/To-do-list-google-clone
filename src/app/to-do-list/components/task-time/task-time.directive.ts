@@ -1,4 +1,4 @@
-import { computed, Directive, input, signal } from '@angular/core';
+import { computed, Directive, input, signal, OnDestroy } from '@angular/core';
 import { calculateTimeDifference } from '../../../utils/calculate-time-difference.util';
 
 @Directive({
@@ -7,20 +7,29 @@ import { calculateTimeDifference } from '../../../utils/calculate-time-differenc
 		'[style.color]': 'color()',
 	},
 })
-export class TaskTimeDirective {
-	taskTime = input.required<string>();
+export class TaskTimeDirective implements OnDestroy {
+	readonly taskTime = input.required<string>();
 
-	color = computed(() => {
+	readonly now = signal(new Date());
+	readonly intervalId = setInterval(() => {
+		this.now.set(new Date());
+	}, 1000 * 60);
+
+	readonly color = computed(() => {
 		const taskTimeDate = new Date(this.taskTime());
-		const timeDifference = calculateTimeDifference(taskTimeDate, new Date());
+		const timeDifference = calculateTimeDifference(taskTimeDate, this.now());
 
 		if (timeDifference.isNegative) {
 			return '#eb4034';
-		} else if (timeDifference.days <= 1) {
+		} else if (timeDifference.days === 0 && timeDifference.hours < 24) {
 			return '#ff8080';
 		} else if (timeDifference.days <= 3) {
 			return '#f5f376';
 		}
 		return '';
 	});
+
+	ngOnDestroy(): void {
+		clearInterval(this.intervalId);
+	}
 }

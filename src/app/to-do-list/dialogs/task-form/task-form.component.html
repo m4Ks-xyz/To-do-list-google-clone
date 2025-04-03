@@ -3,7 +3,7 @@
 	{{ dialogMode === "add" ? "Utwórz nowe zadanie" : "Edytuj zadanie" }}
 </h2>
 <mat-dialog-content class="mat-typography">
-	<form class="form" [formGroup]="form">
+	<form class="form" [formGroup]="form" (keydown.enter)="onSubmit()">
 		<mat-form-field class="form__input">
 			<mat-label> Tytuł </mat-label>
 			<input formControlName="title" matInput placeholder="Tytuł zadania" />

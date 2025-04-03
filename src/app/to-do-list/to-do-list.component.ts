@@ -1,6 +1,7 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	computed,
 	DestroyRef,
 	inject,
 	input,
@@ -55,6 +56,33 @@ export class ToDoListComponent {
 		listId: string;
 		updatedTask: Task;
 	}>();
+
+	sortedToDoList = computed(() => {
+		return this.toDoLists().map((list) => {
+			return {
+				...list,
+				tasks: list.tasks.slice().sort((a, b) => {
+					// 1. Tasks without a date should be at the start
+					if (!a.date && b.date) return -1;
+					if (a.date && !b.date) return 1;
+
+					// 2. Completed tasks should be at the end
+					if (a.complete && !b.complete) return 1;
+					if (!a.complete && b.complete) return -1;
+
+					// 3. Sort by date if both tasks have a date
+					if (a.date && b.date) {
+						const dateA = new Date(a.date).getTime();
+						const dateB = new Date(b.date).getTime();
+						if (dateA !== dateB) return dateA - dateB;
+					}
+
+					// 4. Sort by title alphabetically
+					return a.title.localeCompare(b.title);
+				}),
+			};
+		});
+	});
 
 	openDialogNewTask(listId: string): void {
 		this.#taskFormDialogService.openAddTaskDialog().then((dialogRef) => {

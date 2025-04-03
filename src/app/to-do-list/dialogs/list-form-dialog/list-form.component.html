@@ -8,7 +8,12 @@
 		<mat-form-field class="form__input">
 			<mat-label> Nazwa listy </mat-label>
 
-			<input formControlName="title" matInput placeholder="Moja lista" />
+			<input
+				formControlName="title"
+				matInput
+				placeholder="Moja lista"
+				(keydown.enter)="onSubmit()"
+			/>
 			@if (form.controls.title.hasError("required")) {
 				<mat-error><strong>Tytuł jest</strong> wymagany</mat-error>
 			} @else if (form.controls.title.hasError("maxlength")) {

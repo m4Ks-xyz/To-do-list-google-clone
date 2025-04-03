@@ -1,0 +1,27 @@
+.task-list {
+	&__empty-state {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		padding: 2.5rem 3rem 3rem;
+		border-radius: 0.7rem;
+		background-color: var(--bg-neutral-list);
+		text-align: center;
+    max-width: 25rem;
+
+		&__img {
+			width: 10rem;
+		}
+
+		&__title {
+			width: 100%;
+			color: var(--text-active);
+		}
+
+		&__description {
+			width: 100%;
+			color: var(--text);
+		}
+	}
+}

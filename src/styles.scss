@@ -1,4 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+	--bg-neutral-dark: #1b1b1b;
+	--bg-neutral: #37393b;
+	--bg-neutral-list: #121214;
+	--hover: #40444b;
+	--text: #e2e2e3;
+	--text-active: #63a4cb;
+	--main: #004a77;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+	--scrollbar-bg: #121212;
+	--scrollbar-thumb: #333333;
+	--scrollbar-thumb-hover: #444444;
+	--scrollbar-width: 10px;
+	--scrollbar-radius: 5px;
+
+	--mdc-dialog-container-color: #1b1b1b;
+}
+
+// Apply overflow auto to elements that might need scrolling
+.scrollable-container {
+	overflow: auto; // Only shows scrollbar when content overflows
+}
+
+// Webkit browsers (Chrome, Safari, newer versions of Opera, etc)
+::-webkit-scrollbar {
+	width: var(--scrollbar-width);
+	height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: var(--scrollbar-radius);
+	background: var(--scrollbar-thumb);
+
+	&:hover {
+		background: var(--scrollbar-thumb-hover);
+	}
+}
+
+// Hide scroll arrows/buttons
+::-webkit-scrollbar-button {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+// Firefox
+* {
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+	scrollbar-width: thin;
+}
+
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+	background-color: var(--bg-neutral-dark);
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+	-ms-overflow-style: none; // Hide default scrollbar
+
+	// Custom scrollbar for Edge/IE
+	&::-ms-scrollbar {
+		width: var(--scrollbar-width);
+		height: var(--scrollbar-width);
+	}
+
+	&::-ms-scrollbar-track {
+		background: var(--scrollbar-bg);
+	}
+
+	&::-ms-scrollbar-thumb {
+		border-radius: var(--scrollbar-radius);
+		background: var(--scrollbar-thumb);
+
+		&:hover {
+			background: var(--scrollbar-thumb-hover);
+		}
+	}
+
+	// Hide scroll arrows/buttons for IE/Edge
+	&::-ms-scrollbar-button {
+		display: none;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+}

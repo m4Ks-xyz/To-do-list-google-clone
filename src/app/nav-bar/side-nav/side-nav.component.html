@@ -1,0 +1,73 @@
+<nav>
+	<mat-drawer
+		#drawer
+		class="side-nav"
+		mode="over"
+		[opened]="sidenavIsOpen()"
+		[style.display]="sidenavIsOpen() ? 'block' : 'none'"
+	>
+		<button
+			(click)="openDialogNewTaskDefaultList()"
+			class="side-nav__button side-nav__button--add"
+			mat-fab
+			extended
+		>
+			<mat-icon>add</mat-icon>
+			Utwórz
+		</button>
+
+		<div class="side-nav__button__group">
+			<button
+				(click)="toggleFavoriteShow.emit(false)"
+				[class.side-nav__button__active]="!filterFavoriteActive()"
+				class="side-nav__button side-nav__button--select"
+				mat-flat-button
+			>
+				<mat-icon>task_alt</mat-icon>Wszystkie zadania
+			</button>
+
+			<button
+				(click)="toggleFavoriteShow.emit(true)"
+				[class.side-nav__button__active]="filterFavoriteActive()"
+				class="side-nav__button side-nav__button--select"
+				mat-flat-button
+			>
+				<mat-icon>star_border</mat-icon>Oznaczone gwiazdką
+			</button>
+		</div>
+
+		<button
+			class="side-nav__button side-nav__button--toggle"
+			(click)="showFiller.set(!showFiller())"
+			mat-raised-button
+		>
+			<p>Listy</p>
+			@if (showFiller()) {
+				<mat-icon>keyboard_arrow_up</mat-icon>
+			} @else {
+				<mat-icon>chevron_right</mat-icon>
+			}
+		</button>
+		@if (showFiller()) {
+			@for (list of myLists(); track list.id) {
+				<mat-checkbox
+					[checked]="list.show"
+					(change)="toggleListVisibility.emit(list.id)"
+					class="example-margin side-nav__button__checkbox"
+				>
+					{{ list.title }}
+				</mat-checkbox>
+			}
+		}
+
+		<div class="side-nav__button__group">
+			<button
+				(click)="openDialogAddList()"
+				class="side-nav__button side-nav__button--select"
+				mat-flat-button
+			>
+				<mat-icon>add</mat-icon>Utwórz nową listę
+			</button>
+		</div>
+	</mat-drawer>
+</nav>

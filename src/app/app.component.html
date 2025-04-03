@@ -1,4 +1,24 @@
-<button mat-fab extended>
-	<mat-icon>home</mat-icon>
-	Home
-</button>
+<app-nav-bar (sideNavToggle)="toggleSideNav()" />
+<div class="content">
+	<app-side-nav
+		(toggleListVisibility)="toggleListVisibility($event)"
+		[sidenavIsOpen]="openedSideNav()"
+		(newList)="addNewList($event)"
+		[myLists]="allLists()"
+		(toggleFavoriteShow)="toggleFavoriteShow($event)"
+		(newDefaultListTask)="addNewTask($event)"
+		[filterFavoriteActive]="filterActive()"
+		[defaultListId]="defaultListId()"
+	/>
+	<div class="content__lists">
+		<app-to-do-list
+			[toDoLists]="allLists()"
+			(removeList)="removeList($event)"
+			(newTask)="addNewTask($event)"
+			(removeTask)="removeTask($event)"
+			(editList)="editList($event)"
+			(editTask)="editTask($event)"
+			[filterFavoriteActive]="filterActive()"
+		/>
+	</div>
+</div>

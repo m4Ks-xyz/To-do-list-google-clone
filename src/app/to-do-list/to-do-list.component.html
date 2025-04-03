@@ -1,0 +1,71 @@
+@for (list of sortedToDoList(); track list.id) {
+	@if (
+		list.show && !(list.tasks.length === 0 && filterFavoriteActive() === true)
+	) {
+		<div class="my-list">
+			<div class="my-list__header">
+				<h2 class="my-list__title">{{ list.title }}</h2>
+				<div class="my-list__group"></div>
+				<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu ">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button
+						(click)="onRemoveList(list.id)"
+						[disabled]="list.default"
+						mat-menu-item
+					>
+						<mat-icon>delete</mat-icon>
+						<span>Usuń liste</span>
+					</button>
+					<button (click)="openEditListDialog(list)" mat-menu-item>
+						<mat-icon>edit_square</mat-icon>
+						<span>Zmień nazwe listy</span>
+					</button>
+				</mat-menu>
+				<button
+					(click)="openDialogNewTask(list.id)"
+					class="my-list__button"
+					mat-menu-item
+				>
+					<mat-icon>add_task</mat-icon>
+					<span>Dodaj zadanie</span>
+				</button>
+			</div>
+
+			<div class="task-list">
+				<div class="task-list__items">
+					@for (task of list.tasks; track task.id) {
+						<app-to-do-list-task
+							[task]="task"
+							[listId]="list.id"
+							(editTask)="emitEditTaskData($event)"
+							(removeTask)="emitRemoveTaskData($event)"
+						/>
+					} @empty {
+						<app-empty-state>
+							<img app-empty-state-img src="empty-tasks-dark.png" />
+							<ng-container app-empty-state-title>
+								Nie ma jeszcze żadnych zadań
+							</ng-container>
+							<ng-container app-empty-state-description>
+								Dodaj swoje zadania do wykonania już teraz
+							</ng-container>
+						</app-empty-state>
+					}
+				</div>
+			</div>
+		</div>
+	}
+}
+@if (toDoLists().length === 0 && filterFavoriteActive()) {
+	<app-empty-state>
+		<img app-empty-state-img src="empty-fav-task-dark.png" />
+		<ng-container app-empty-state-title>
+			Brak zadań oznaczonych gwiazdką
+		</ng-container>
+		<ng-container app-empty-state-description>
+			Oznacz ważne zadania gwiazdką, aby móc łatwo je tu znaleźć
+		</ng-container>
+	</app-empty-state>
+}

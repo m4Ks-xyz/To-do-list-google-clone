@@ -1,0 +1,72 @@
+<div
+	[class.task-list__item--completed]="task().complete"
+	class="task-list__item"
+>
+	<div class="task-list__group">
+		@if (task().date && !task().complete) {
+			<p class="task-list__item__date" app-task-time [taskTime]="task().date">
+				<mat-icon
+					aria-hidden="false"
+					aria-label="Calendar icon"
+					fontIcon="event"
+				></mat-icon>
+				{{ task().date | date: "d MMM, y, HH:mm" }}
+			</p>
+		}
+
+		<h3
+			[class.task-list__item__title--completed]="task().complete"
+			class="task-list__item__title"
+		>
+			{{ task().title }}
+		</h3>
+		<p class="task-list__item__description">
+			{{ task().description }}
+		</p>
+	</div>
+
+	<div class="task-list__group task-list__group--icons">
+		<button
+			(click)="toggleComplete(listId(), task())"
+			class="task-list__group__button"
+			mat-fab
+			aria-label="Favorite icon"
+		>
+			<mat-icon class="task-list__group__button__icon">
+				{{ task().complete ? "undo" : "check" }}
+			</mat-icon>
+		</button>
+		<button
+			class="task-list__group__button"
+			mat-fab
+			[matMenuTriggerFor]="menu"
+			aria-label="Menu "
+		>
+			<mat-icon class="task-list__group__button__icon">more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button (click)="openDialogEditTask(listId(), task())" mat-menu-item>
+				<mat-icon>edit_square</mat-icon>
+				<span>Edytuj</span>
+			</button>
+			<button
+				(click)="removeTask.emit({ listId: listId(), taskId: task().id })"
+				mat-menu-item
+			>
+				<mat-icon>delete</mat-icon>
+				<span>Usuń</span>
+			</button>
+		</mat-menu>
+		<button
+			(click)="toggleFavorite(listId(), task())"
+			class="task-list__group__button"
+			[class.task-list__group__button--favorite]="task().favorite"
+			mat-fab
+			aria-label="Favorite icon"
+		>
+			<mat-icon class="task-list__group__button__icon">
+				{{ task().favorite ? "star" : "star_border" }}
+			</mat-icon>
+		</button>
+	</div>
+</div>

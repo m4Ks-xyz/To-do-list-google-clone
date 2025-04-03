@@ -1,0 +1,76 @@
+.side-nav {
+	min-width: 14rem;
+	max-width: 15rem;
+	padding: 0.75rem 0.5rem 0;
+	background-color: var(--bg-neutral-dark);
+	font-size: 2rem;
+
+	.mat-mdc-unelevated-button:not(:disabled) {
+		justify-content: start;
+		background-color: var(--bg-neutral-dark);
+		color: var(--text);
+
+		&:hover {
+			background-color: var(--bg-neutral);
+		}
+
+		&:active {
+			background-color: var(--main);
+		}
+	}
+
+	.mat-mdc-raised-button:not(:disabled) {
+		background-color: var(--bg-neutral-dark);
+		color: var(--text);
+
+		&:hover {
+			background-color: var(--bg-neutral);
+		}
+	}
+
+	&__button {
+		background-color: var(--bg-neutral);
+		color: var(--text);
+
+		&__active {
+			background-color: var(--main) !important;
+		}
+
+		&__group {
+			padding: 0.5rem 0;
+		}
+
+		&__checkbox {
+			width: 100%;
+			padding: 0 0 0 1rem;
+			border-radius: 2rem;
+
+			&:hover {
+				background-color: var(--bg-neutral);
+			}
+		}
+
+		&--add {
+			margin: 0 0 1.125rem 0.75rem;
+
+			&:hover {
+				background-color: var(--main);
+			}
+		}
+
+		&--select {
+			width: 100%;
+			padding-left: 2rem;
+		}
+
+		&--toggle {
+			justify-content: start;
+			width: 100%;
+			box-shadow: none;
+
+			&:focus {
+				box-shadow: none;
+			}
+		}
+	}
+}

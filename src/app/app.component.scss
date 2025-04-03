@@ -1,0 +1,11 @@
+.content {
+	display: flex;
+
+	&__lists {
+		display: flex;
+		align-items: center;
+		padding: 0 1rem;
+		overflow: auto;
+		gap: 2rem;
+	}
+}

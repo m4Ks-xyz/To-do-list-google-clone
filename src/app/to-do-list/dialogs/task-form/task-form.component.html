@@ -31,7 +31,7 @@
 		<mat-form-field class="form__input">
 			<mat-label>Data</mat-label>
 			<input formControlName="date" matInput [matDatepicker]="picker" />
-			<mat-hint>DD/MM/YYYY</mat-hint>
+			<mat-hint>DD/MM/RRRR</mat-hint>
 			<mat-datepicker-toggle
 				matIconSuffix
 				[for]="picker"
@@ -43,6 +43,7 @@
 		<mat-form-field class="form__input">
 			<mat-label>Godzina</mat-label>
 			<input formControlName="time" matInput [matTimepicker]="timepicker" />
+			<mat-hint>GG:MM</mat-hint>
 			<mat-timepicker #timepicker />
 			<mat-timepicker-toggle [for]="timepicker" matSuffix />
 		</mat-form-field>

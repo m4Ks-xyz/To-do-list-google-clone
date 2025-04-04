@@ -39,7 +39,7 @@ export class ToDoListService {
 			: [
 					{
 						id: generateRandomId(),
-						title: 'Zadania główne',
+						title: 'My Tasks',
 						default: true,
 						show: true,
 						tasks: [],

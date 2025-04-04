@@ -62,22 +62,22 @@ export class ToDoListComponent {
 			return {
 				...list,
 				tasks: list.tasks.slice().sort((a, b) => {
-					// 1. Tasks without a date should be at the start
-					if (!a.date && b.date) return -1;
-					if (a.date && !b.date) return 1;
+					// 1. Tasks without a date and not completed should go to the top
+					if (!a.date && !a.complete && (b.date || b.complete)) return -1; // a goes to the top
+					if (!b.date && !b.complete && (a.date || a.complete)) return 1; // b goes to the top
 
-					// 2. Completed tasks should be at the end
-					if (a.complete && !b.complete) return 1;
-					if (!a.complete && b.complete) return -1;
+					// 2. Completed tasks should be at the bottom, no matter if they have a date
+					if (a.complete && !b.complete) return 1; // a goes to the bottom
+					if (!a.complete && b.complete) return -1; // b goes to the bottom
 
-					// 3. Sort by date if both tasks have a date
+					// 3. If both tasks are not completed, sort by date (if both have a date)
 					if (a.date && b.date) {
 						const dateA = new Date(a.date).getTime();
 						const dateB = new Date(b.date).getTime();
 						if (dateA !== dateB) return dateA - dateB;
 					}
 
-					// 4. Sort by title alphabetically
+					// 4. If both tasks are incomplete and don't have dates, sort alphabetically by title
 					return a.title.localeCompare(b.title);
 				}),
 			};

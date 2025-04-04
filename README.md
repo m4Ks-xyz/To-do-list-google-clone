@@ -1,59 +1,31 @@
-# ToDoListGoogleClone
+# To-Do List App <img src="./public/logo.png" alt="Logo" width="35" style="vertical-align: middle; line-height: 1.5;">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
 
-## Development server
+This is a simple and intuitive to-do list application that helps users manage their daily tasks efficiently. It is a clone of Google To-Do List with some changes, allowing users to create task lists, add tasks with descriptions and deadlines, mark important tasks, and track their progress.
 
-To start a local development server, run:
+<img src="./to-do-list-app-screenshot.png" alt="Logo" >
 
-```bash
-ng serve
-```
+## Technologies Used 🛠️
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- ![Angular Logo](https://img.shields.io/badge/Angular-DD0031?style=flat&logo=angular&logoColor=white) - For building the frontend of the application
+- ![TypeScript Logo](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) - To ensure a structured and type-safe codebase
+- ![Netlify Logo](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white) - For deploying the application and making it accessible online
+- ![SCSS Logo](https://img.shields.io/badge/SCSS-CC6699?style=flat&logo=sass&logoColor=white) - For styling the UI and enhancing the design
+- ![RxJS Logo](https://img.shields.io/badge/RxJS-B7178C?style=flat&logo=ReactiveX&logoColor=white) - To manage reactive data streams efficiently
 
-## Code scaffolding
+## Main Features ✨
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Component-Based Structure** - Modular approach with separate components for navigation, task lists, and dialogs
+- **Services for Business Logic** - Implemented services to handle dialog interactions and task management
+- **Models for Data Handling** - Created models to manage task and list data effectively
+- **Custom Directives** - Added a directive to enhance user interactions with tasks
+- **Util Functions** - Created utility functions for time calculations and generating random IDs
+- **Dark Mode UI** 🌙 - Designed a modern dark-themed interface for a better user experience
 
-```bash
-ng generate component component-name
-```
+This project is built to be scalable, easy to use, and visually appealing. Contributions and suggestions are always welcome! 💡
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This is my first Angular app so be honest! 😃
 
-```bash
-ng generate --help
-```
+## Deployed App 🌐
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+You can view the app here 👉 [tasks-google-clone.netlify.app](https://tasks-google-clone.netlify.app/)

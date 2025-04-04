@@ -34,3 +34,33 @@
 		font-weight: bold;
 	}
 }
+
+@media only screen and (max-width: 996px) {
+	:host {
+		flex-direction: column;
+	}
+
+	.my-list {
+		width: 90vw;
+		padding: 0;
+
+		&__header {
+			padding: 1rem 1.25rem 0;
+		}
+
+		&__button--add-task {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 1.5rem;
+			background-color: var(--bg-neutral);
+		}
+	}
+
+	.task-list {
+		&__items {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
+	}
+}

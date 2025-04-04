@@ -27,9 +27,13 @@
 				placeholder="Add description"
 			/>
 			@if (form.controls.description.hasError("maxlength")) {
-				<mat-error><strong>Maximum</strong> number of characters is 100</mat-error>
-			} @else if (form.controls.title.hasError("minlength")) {
-				<mat-error><strong>Minimum</strong> number of characters is 3</mat-error>
+				<mat-error
+					><strong>Maximum</strong> number of characters is 100</mat-error
+				>
+			} @else if (form.controls.description.hasError("minlength")) {
+				<mat-error
+					><strong>Minimum</strong> number of characters is 3</mat-error
+				>
 			}
 		</mat-form-field>
 		<mat-form-field class="form__input">

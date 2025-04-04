@@ -24,7 +24,7 @@ This is a simple and intuitive to-do list application that helps users manage th
 
 This project is built to be scalable, easy to use, and visually appealing. Contributions and suggestions are always welcome! 💡
 
-This is my first Angular app so be honest! 😃
+This app was developed primarily for educational purposes, featuring its core functionality along with some additional enhancements.
 
 ## Deployed App 🌐
 

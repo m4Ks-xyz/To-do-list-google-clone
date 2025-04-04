@@ -16,11 +16,11 @@
 						mat-menu-item
 					>
 						<mat-icon>delete</mat-icon>
-						<span>Usuń liste</span>
+						<span>Delete list</span>
 					</button>
 					<button (click)="openEditListDialog(list)" mat-menu-item>
 						<mat-icon>edit_square</mat-icon>
-						<span>Zmień nazwe listy</span>
+						<span>Rename list</span>
 					</button>
 				</mat-menu>
 				<button
@@ -29,7 +29,7 @@
 					mat-menu-item
 				>
 					<mat-icon>add_task</mat-icon>
-					<span>Dodaj zadanie</span>
+					<span>Add a task</span>
 				</button>
 			</div>
 
@@ -45,11 +45,9 @@
 					} @empty {
 						<app-empty-state>
 							<img app-empty-state-img src="empty-tasks-dark.png" />
-							<ng-container app-empty-state-title>
-								Nie ma jeszcze żadnych zadań
-							</ng-container>
+							<ng-container app-empty-state-title> No tasks yet </ng-container>
 							<ng-container app-empty-state-description>
-								Dodaj swoje zadania do wykonania już teraz
+								Add your to-dos and keep track of them
 							</ng-container>
 						</app-empty-state>
 					}
@@ -61,11 +59,9 @@
 @if (toDoLists().length === 0 && filterFavoriteActive()) {
 	<app-empty-state>
 		<img app-empty-state-img src="empty-fav-task-dark.png" />
-		<ng-container app-empty-state-title>
-			Brak zadań oznaczonych gwiazdką
-		</ng-container>
+		<ng-container app-empty-state-title> No starred tasks </ng-container>
 		<ng-container app-empty-state-description>
-			Oznacz ważne zadania gwiazdką, aby móc łatwo je tu znaleźć
+			Mark important tasks with a star so that you can easily find them here
 		</ng-container>
 	</app-empty-state>
 }

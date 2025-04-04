@@ -47,14 +47,14 @@
 		<mat-menu #menu="matMenu">
 			<button (click)="openDialogEditTask(listId(), task())" mat-menu-item>
 				<mat-icon>edit_square</mat-icon>
-				<span>Edytuj</span>
+				<span>Edit</span>
 			</button>
 			<button
 				(click)="removeTask.emit({ listId: listId(), taskId: task().id })"
 				mat-menu-item
 			>
 				<mat-icon>delete</mat-icon>
-				<span>Usuń</span>
+				<span>Delete</span>
 			</button>
 		</mat-menu>
 		<button

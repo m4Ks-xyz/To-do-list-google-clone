@@ -6,6 +6,15 @@
 }
 
 .logo {
+	width: auto;
 	height: 2rem;
-  width: auto;
+}
+
+@media only screen and (max-width: 996px) {
+	:host {
+		z-index: 100;
+		position: sticky;
+		top: 0;
+		left: 0;
+	}
 }

@@ -21,11 +21,18 @@ export class AppComponent {
 	readonly #toDoListService = inject(ToDoListService);
 	readonly allLists = this.#toDoListService.filteredListsFavoriteTasks;
 
-	readonly openedSideNav = signal(true);
+	readonly openedSideNav = signal(this.#isLargeDevice);
 	readonly addListState = signal(false);
 
 	readonly filterActive = this.#toDoListService.filterActive;
 	readonly defaultListId = this.#toDoListService.defaultListId;
+
+	get #isLargeDevice(): boolean {
+		if (typeof window !== 'undefined') {
+			return window.innerWidth >= 996;
+		}
+		return false;
+	}
 
 	toggleSideNav(): void {
 		this.openedSideNav.update((prev) => !prev);

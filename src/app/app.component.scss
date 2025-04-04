@@ -9,3 +9,9 @@
 		gap: 2rem;
 	}
 }
+@media only screen and (max-width: 996px) {
+	.content {
+		align-items: center;
+		justify-content: center;
+	}
+}

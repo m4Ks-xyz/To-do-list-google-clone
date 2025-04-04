@@ -97,3 +97,35 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 996px) {
+	.task-list {
+
+      &__group{
+        width: 100%;
+      }
+		&__item {
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 1rem;
+
+			.task-list__group__button {
+				opacity: 100;
+			}
+
+			&:hover .task-list__group__button {
+				opacity: none;
+			}
+
+			.task-list__group__button--favorite {
+				background-color: var(--bg-neutral);
+				transition: none;
+			}
+
+			&__title {
+				justify-self: start;
+			}
+		}
+	}
+}

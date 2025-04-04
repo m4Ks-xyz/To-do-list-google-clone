@@ -74,3 +74,14 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 996px) {
+	.side-nav {
+		z-index: 100;
+		position: absolute;
+		top: 6vh;
+		left: 0;
+		height: 100vh;
+		background-color: var(--bg-neutral-dark);
+	}
+}

@@ -5,13 +5,19 @@ This is a simple and intuitive to-do list application that helps users manage th
 
 <img src="./to-do-list-app-screenshot.png" alt="Logo" >
 
+## Deployed App 🌐
+
+You can view the app here 👉 [tasks-google-clone.netlify.app](https://tasks-google-clone.netlify.app/)
+
+
 ## Technologies Used 🛠️
 
 - ![Angular Logo](https://img.shields.io/badge/Angular-DD0031?style=flat&logo=angular&logoColor=white) - For building the frontend of the application
 - ![TypeScript Logo](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) - To ensure a structured and type-safe codebase
-- ![Netlify Logo](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white) - For deploying the application and making it accessible online
-- ![SCSS Logo](https://img.shields.io/badge/SCSS-CC6699?style=flat&logo=sass&logoColor=white) - For styling the UI and enhancing the design
 - ![RxJS Logo](https://img.shields.io/badge/RxJS-B7178C?style=flat&logo=ReactiveX&logoColor=white) - To manage reactive data streams efficiently
+- ![SCSS Logo](https://img.shields.io/badge/SCSS-CC6699?style=flat&logo=sass&logoColor=white) - For styling the UI and enhancing the design
+- ![Netlify Logo](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white) - For deploying the application and making it accessible online
+
 
 ## Main Features ✨
 
@@ -26,6 +32,3 @@ This project is built to be scalable, easy to use, and visually appealing. Contr
 
 This app was developed primarily for educational purposes, featuring its core functionality along with some additional enhancements.
 
-## Deployed App 🌐
-
-You can view the app here 👉 [tasks-google-clone.netlify.app](https://tasks-google-clone.netlify.app/)

@@ -85,7 +85,6 @@ export class TaskFormDialogComponent {
 	}
 
 	onSubmit(): void {
-		console.log(JSON.stringify(this.form.controls.date.errors));
 		this.form.markAllAsTouched();
 		if (this.form.valid) {
 			const formValue = this.form.value;

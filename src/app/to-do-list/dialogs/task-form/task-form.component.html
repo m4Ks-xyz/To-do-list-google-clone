@@ -57,7 +57,7 @@
 			<mat-label>Time</mat-label>
 			<input formControlName="time" matInput [matTimepicker]="timepicker" />
 			<mat-hint>GG:MM</mat-hint>
-			@if (form.controls.time.hasError("matDatepickerParse")) {
+			@if (form.controls.time.hasError("matTimepickerParse")) {
 				<mat-error
 					><strong>GG:MM</strong> - Please enter a valid time</mat-error
 				>
